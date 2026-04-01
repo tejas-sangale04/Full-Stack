@@ -16,31 +16,16 @@ export const authOptions: NextAuthOptions = {
           return null;
         }
 
-        // Search by email, assuming username is entered in the email field for simplicity
-        // or modify schema to add username
         const user = await prisma.user.findUnique({
           where: {
             email: credentials.username
           }
         });
 
-        // For demo purposes, if user not found, we check the hardcoded demo credentials
         if (!user) {
-          const DEMO_USERS = [
-            { id: "1", email: "waiter1", password: "waiter123", role: "waiter" },
-            { id: "2", email: "chef1", password: "chef123", role: "chef" },
-            { id: "3", email: "admin", password: "admin123", role: "admin" },
-            { id: "4", email: "customer1", password: "cust123", role: "customer" },
-          ];
-          
-          const demoUser = DEMO_USERS.find(u => u.email === credentials.username && u.password === credentials.password);
-          if (demoUser) {
-            return { id: demoUser.id, email: demoUser.email, role: demoUser.role };
-          }
           return null;
         }
 
-        // If user exists in DB, check password
         const passwordMatch = await bcrypt.compare(credentials.password, user.password);
         
         if (!passwordMatch) {
