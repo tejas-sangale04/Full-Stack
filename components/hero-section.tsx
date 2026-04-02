@@ -44,7 +44,7 @@ export function HeroSection() {
           <img
             key={image}
             src={image}
-            alt={`Vrindavan dish ${index + 1}`}
+            alt={`Vrundavan dish ${index + 1}`}
             className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-1000 ${
               currentImageIndex === index ? 'opacity-100' : 'opacity-0'
             }`}
@@ -99,10 +99,7 @@ export function HeroSection() {
           ))}
         </div>
 
-        {/* Text overlay */}
-        <div className="absolute inset-0 z-10 flex flex-col items-center justify-end pb-10 sm:pb-14 lg:pb-20">
-         
-        </div>
+
       </div>
     </section>
   )

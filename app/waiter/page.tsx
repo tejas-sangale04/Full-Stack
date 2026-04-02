@@ -149,8 +149,6 @@ export default function WaiterPage() {
       <main className="mx-auto max-w-[1440px] px-4 py-8 lg:px-10">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="font-serif text-3xl text-foreground">Take Order</h1>
-          <button onClick={() => signOut()}
-            className="text-xs text-muted-foreground hover:text-foreground underline">Logout</button>
         </div>
 
         <div className="flex flex-col gap-6 lg:flex-row">

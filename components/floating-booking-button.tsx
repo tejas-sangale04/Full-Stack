@@ -3,8 +3,11 @@
 import { motion } from "framer-motion"
 import { UtensilsCrossed } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/components/language-provider"
 
 const FloatingBookingButton = () => {
+  const { t } = useLanguage()
+
   return (
     <Link href="/book-table">
       <motion.div
@@ -32,12 +35,12 @@ const FloatingBookingButton = () => {
 
         {/* Primary button body */}
         <motion.div
-          className="relative bg-[#e2c18d] w-26 h-26 flex flex-col items-center justify-center shadow-xl p-2 text-center rounded-sm"
+          className="relative bg-[#e2c18d] w-26 h-26 flex flex-col items-center justify-center shadow-xl p-4 text-center rounded-sm"
           whileHover={{ scale: 1.05 }}
         >
           <UtensilsCrossed className="w-10 h-10 mb-1 text-black" strokeWidth={2} />
           <span className="text-[10px] font-bold uppercase tracking-tighter text-black leading-tight">
-            Book A <br /> Table
+            {t("book_a_table")}
           </span>
         </motion.div>
       </motion.div>

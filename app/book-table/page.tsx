@@ -69,8 +69,8 @@ export default function BookTablePage() {
                   onChange={(e) => setRestaurant(e.target.value)}
                 >
                   <option value="">Select a restaurant</option>
-                  <option value="Vrindavan Main Dining">Vrindavan Main Dining</option>
-                  <option value="Vrindavan Garden">Vrindavan Garden</option>
+                  <option value="Vrundavan Main Dining">Vrundavan Main Dining</option>
+                  <option value="Vrundavan Garden">Vrundavan Garden</option>
                 </select>
               </div>
             </div>

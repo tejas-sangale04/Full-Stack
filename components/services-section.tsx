@@ -2,38 +2,40 @@
 
 import { useState } from "react"
 import Link from "next/link"
-
-const services = [
-  {
-    id: "menus",
-    title: "MENUS",
-    subtitle: "Breakfast, lunch, dinner and late tipples",
-    images: ["/breakfast_image.jpg", "/placeholder.jpg", "/placeholder.jpg"],
-    link: "/menu",
-    boxSize: "px-6 py-6",
-  },
-  {
-    id: "reservations",
-    title: "RESERVATIONS",
-    subtitle: "For bookings and large groups",
-    images: ["/reservation.jpg", "/placeholder.jpg", "/placeholder.jpg"],
-    link: "/book-table",
-    boxSize: "px-4 py-4",
-  },
-  {
-    id: "offers",
-    title: "OFFERS",
-    subtitle: "Special deals and promotions",
-    images: ["/offers.png", "/placeholder.jpg", "/placeholder.jpg"],
-    link: "/offers",
-    boxSize: "px-6 py-6",
-  },
-]
+import { useLanguage } from "@/components/language-provider"
 
 export function ServicesSection() {
   const [currentImageIndex, setCurrentImageIndex] = useState<{ [key: number]: number }>({
     0: 0, 1: 0, 2: 0,
   })
+  const { t } = useLanguage()
+
+  const services = [
+    {
+      id: "menus",
+      title: t("services_menus_title"),
+      subtitle: t("services_menus_sub"),
+      images: ["/breakfast_image.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+      link: "/menu",
+      boxSize: "px-6 py-6",
+    },
+    {
+      id: "reservations",
+      title: t("services_reservations_title"),
+      subtitle: t("services_reservations_sub"),
+      images: ["/reservation.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+      link: "/book-table",
+      boxSize: "px-4 py-4",
+    },
+    {
+      id: "offers",
+      title: t("services_offers_title"),
+      subtitle: t("services_offers_sub"),
+      images: ["/offers.png", "/placeholder.jpg", "/placeholder.jpg"],
+      link: "/offers",
+      boxSize: "px-6 py-6",
+    },
+  ]
 
   const handleMouseEnter = (index: number) => {
     const interval = setInterval(() => {

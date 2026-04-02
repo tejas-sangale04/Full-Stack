@@ -7,10 +7,11 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   LineChart, Line, CartesianGrid, Legend
 } from "recharts"
-import { TrendingUp, ShoppingBag, Package, Users, LogOut, RefreshCw, CalendarCheck, Trash2, Plus } from "lucide-react"
+import { TrendingUp, ShoppingBag, Package, Users, LogOut, RefreshCw, CalendarCheck, Trash2, Plus, ChevronDown, Languages } from "lucide-react"
 import { getReservations } from "@/app/actions/reservations"
 import { getMenuItems, addMenuItem, deleteMenuItem } from "@/app/actions/menu"
 import { getOffers, addOffer, deleteOffer } from "@/app/actions/offers"
+import { useLanguage } from "@/components/language-provider"
 
 type MenuItem = {
   id: string;
@@ -112,6 +113,7 @@ export default function AdminPage() {
   const [view, setView] = useState<"overview" | "monthly" | "stock" | "reservations" | "menu" | "offers">("overview")
   const [menuItems, setMenuItems] = useState<MenuItem[]>([])
   const [offers, setOffers] = useState<Offer[]>([])
+  const { t, setLanguage } = useLanguage()
 
   // New item form state
   const [newItem, setNewItem] = useState({ name: "", description: "", price: "", category: "Starters" })
@@ -255,15 +257,70 @@ export default function AdminPage() {
     <div className="min-h-screen bg-amber-50/50">
       {/* Top bar */}
       <div className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-sm px-6 py-3 flex items-center justify-between">
-        <span className="font-serif text-xl text-foreground">Admin Dashboard — Vrindavan</span>
+        <span className="font-serif text-xl text-foreground">{t("admin_dashboard")} — Vrundavan</span>
         <div className="flex items-center gap-4">
           <button onClick={load} className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground">
-            <RefreshCw className="h-3.5 w-3.5" /> Refresh
+            <RefreshCw className="h-3.5 w-3.5" /> {t("refresh")}
           </button>
-          <button onClick={() => signOut({ callbackUrl: "/login" })}
-            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-red-500">
-            <LogOut className="h-3.5 w-3.5" /> Logout
-          </button>
+
+          {/* Language Selector */}
+          <div className="relative group">
+            <button
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/20 text-primary bg-primary/5 hover:bg-primary/10 transition-all"
+            >
+              <Languages className="h-4 w-4" />
+            </button>
+            
+            {/* Language Dropdown */}
+            <div className="absolute right-0 top-full pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-[100]">
+              <div className="w-32 rounded-xl bg-background border border-border shadow-xl overflow-hidden">
+                <div className="px-3 py-2 text-[10px] font-bold text-muted-foreground border-b border-border bg-muted/30 uppercase tracking-widest text-center">
+                  {t("language")}
+                </div>
+                {[
+                  { id: "en", label: "English", native: "English" },
+                  { id: "mr", label: "Marathi", native: "मराठी" },
+                  { id: "hi", label: "Hindi", native: "हिंदी" }
+                ].map((lang) => (
+                  <button
+                    key={lang.id}
+                    onClick={() => setLanguage(lang.id as "en" | "mr" | "hi")}
+                    className="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-primary/5 transition-colors flex flex-col"
+                  >
+                    <span className="text-foreground">{lang.label}</span>
+                    <span className="text-[10px] text-muted-foreground">{lang.native}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          {/* Admin Logout on Hover */}
+          <div className="relative group">
+            <button
+              className="flex items-center gap-2 text-xs font-semibold tracking-[0.1em] transition-all px-4 py-1.5 rounded-full border border-primary/20 text-primary bg-primary/5"
+            >
+              <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="uppercase">{session?.user?.role || "ADMIN"}</span>
+              <ChevronDown className="h-3 w-3 opacity-50 group-hover:rotate-180 transition-transform" />
+            </button>
+            
+            {/* Logout Dropdown */}
+            <div className="absolute right-0 top-full pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-[100]">
+              <div className="w-40 rounded-xl bg-background border border-border shadow-xl overflow-hidden">
+                <div className="px-4 py-2 text-[10px] font-bold text-muted-foreground border-b border-border bg-muted/30 uppercase tracking-widest">
+                  {t("account")}
+                </div>
+                <button
+                  onClick={() => signOut({ callbackUrl: "/login" })}
+                  className="w-full flex items-center gap-2 px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                >
+                  <LogOut className="h-4 w-4" />
+                  {t("logout")}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -275,7 +332,7 @@ export default function AdminPage() {
             <button key={tab} onClick={() => setView(tab)}
               className={`rounded-full px-5 py-2 text-xs font-semibold tracking-widest transition capitalize ${view === tab ? "bg-primary text-primary-foreground" : "bg-background border border-border text-muted-foreground hover:text-foreground"
                 }`}>
-              {tab}
+              {t(tab === "menu" ? "menu_mgmt" : tab === "offers" ? "offers_mgmt" : tab)}
             </button>
           ))}
         </div>

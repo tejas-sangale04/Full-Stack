@@ -1,24 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Search, ChevronDown, Menu, X, ChevronRight } from "lucide-react"
+import { Search, ChevronDown, Menu, X, ChevronRight, LogOut, Languages } from "lucide-react"
 import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
 import SparkBackground from "./spark"
-
-const navLinks = [
-  { label: "ABOUT", href: "#about" },
-  { label: "MENU", href: "/menu", hasDropdown: true, dropdownItems: [
-    { label: "All Day", href: "/menu?tab=allday" },
-    { label: "Starters", href: "/menu?tab=starters" },
-    { label: "Main Course", href: "/menu?tab=maincourse" },
-    { label: "Paneer Special", href: "/menu?tab=paneerspecial" },
-    { label: "Breakfast", href: "/menu?tab=breakfast" },
-    { label: "Drinks", href: "/menu?tab=drinks" }
-  ]},
-  { label: "OFFERS", href: "/offers"},
-  { label: "CONTACT", href: "#location"  },
-]
+import { useLanguage } from "@/components/language-provider"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -26,6 +13,21 @@ export function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   
   const { data: session } = useSession()
+  const { t, setLanguage } = useLanguage()
+
+  const navLinks = [
+    { label: t("about"), href: "#about" },
+    { label: t("menu"), href: "/menu", hasDropdown: true, dropdownItems: [
+      { label: t("all_day"), href: "/menu?tab=allday" },
+      { label: t("starters"), href: "/menu?tab=starters" },
+      { label: t("main_course"), href: "/menu?tab=maincourse" },
+      { label: t("paneer_special"), href: "/menu?tab=paneerspecial" },
+      { label: t("breakfast"), href: "/menu?tab=breakfast" },
+      { label: t("drinks"), href: "/menu?tab=drinks" }
+    ]},
+    { label: t("offers"), href: "/offers"},
+    { label: t("contact"), href: "#location"  },
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,11 +53,11 @@ export function Navbar() {
 
       <nav className="relative z-10 mx-auto flex max-w-[1440px] items-center justify-between px-6 py-4 lg:px-10">
         {/* Logo */}
-        <Link href="/" className="flex-shrink-0" aria-label="Vrindavan Home">
+        <Link href="/" className="flex-shrink-0" aria-label="Vrundavan Home">
           <span className={`font-serif text-2xl tracking-[0.25em] lg:text-3xl transition-colors ${
             isScrolled ? 'text-amber-800' : 'text-primary'
           }`}>
-            VRINDAVAN
+            VRUNDAVAN
           </span>
         </Link>
 
@@ -83,8 +85,8 @@ export function Navbar() {
               {/* Dropdown Menu */}
               {link.hasDropdown && openDropdown === link.label && (
                 <div className="absolute left-0 top-full mt-2 w-56 rounded-lg bg-background border border-border shadow-xl py-2 z-[100]">
-                  <div className="px-4 py-2 text-xs font-semibold tracking-[0.15em] text-muted-foreground border-b border-border">
-                    SELECT A MENU
+                  <div className="px-4 py-2 text-[10px] font-semibold tracking-[0.15em] text-muted-foreground border-b border-border">
+                    {t("select_menu")}
                   </div>
                   {link.dropdownItems?.map((item) => (
                     <Link
@@ -107,14 +109,35 @@ export function Navbar() {
         {/* Right Actions */}
         <div className="flex items-center gap-4">
           {session ? (
-            <button
-              onClick={() => signOut()}
-              className={`hidden text-xs font-medium tracking-[0.1em] transition-colors md:inline-block lg:text-sm ${
-                isScrolled ? 'text-slate-700 hover:text-amber-700' : 'text-foreground hover:text-primary'
-              }`}
-            >
-              LOGOUT ({session.user?.role})
-            </button>
+            <div className="relative group">
+              <button
+                className={`flex items-center gap-2 text-xs font-semibold tracking-[0.1em] transition-all px-4 py-2 rounded-full border ${
+                  isScrolled 
+                    ? 'border-amber-200 text-amber-800 bg-amber-50/50' 
+                    : 'border-primary/20 text-primary bg-primary/5'
+                }`}
+              >
+                <div className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                <span className="uppercase">{session.user?.role || 'User'}</span>
+                <ChevronDown className="h-3 w-3 opacity-50 group-hover:rotate-180 transition-transform" />
+              </button>
+              
+              {/* Logout Dropdown on Hover */}
+              <div className="absolute right-0 top-full pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-[100]">
+                <div className="w-40 rounded-xl bg-background border border-border shadow-xl overflow-hidden">
+                  <div className="px-4 py-2 text-[10px] font-bold text-muted-foreground border-b border-border bg-muted/30 uppercase tracking-widest">
+                    {t("account")}
+                  </div>
+                  <button
+                    onClick={() => signOut()}
+                    className="w-full flex items-center gap-2 px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    {t("logout")}
+                  </button>
+                </div>
+              </div>
+            </div>
           ) : (
             <Link
               href="/login"
@@ -122,21 +145,9 @@ export function Navbar() {
                 isScrolled ? 'text-slate-700 hover:text-amber-700' : 'text-foreground hover:text-primary'
               }`}
             >
-              LOGIN / JOIN
+              {t("login_join")}
             </Link>
           )}
-
-    {/*
-          <button
-            className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors ${
-              isScrolled 
-                ? 'border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white' 
-                : 'border-primary text-primary hover:bg-primary hover:text-primary-foreground'
-            }`}
-            aria-label="Search"
-          >
-           <Search className="h-4 w-4" />
-          </button>*/}
 
           <Link
             href="/book-table"
@@ -144,8 +155,44 @@ export function Navbar() {
               isScrolled ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white' : 'bg-primary text-primary-foreground'
             }`}
           >
-            BOOK NOW
+            {t("book_now")}
           </Link>
+
+          {/* Language Selector */}
+          <div className="relative group hidden sm:block">
+            <button
+              className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all ${
+                isScrolled 
+                  ? 'border-amber-200 text-amber-700 hover:bg-amber-100' 
+                  : 'border-primary/20 text-primary hover:bg-primary/5'
+              }`}
+            >
+              <Languages className="h-4 w-4" />
+            </button>
+            
+            {/* Language Dropdown */}
+            <div className="absolute right-0 top-full pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-[100]">
+              <div className="w-32 rounded-xl bg-background border border-border shadow-xl overflow-hidden">
+                <div className="px-3 py-2 text-[10px] font-bold text-muted-foreground border-b border-border bg-muted/30 uppercase tracking-widest">
+                  {t("language")}
+                </div>
+                {[
+                  { id: "en", label: "English", native: "English" },
+                  { id: "mr", label: "Marathi", native: "मराठी" },
+                  { id: "hi", label: "Hindi", native: "हिंदी" }
+                ].map((lang) => (
+                  <button
+                    key={lang.id}
+                    onClick={() => setLanguage(lang.id as "en" | "mr" | "hi")}
+                    className="w-full text-left px-4 py-2.5 text-xs font-medium hover:bg-primary/5 transition-colors flex flex-col"
+                  >
+                    <span className="text-foreground">{lang.label}</span>
+                    <span className="text-[10px] text-muted-foreground">{lang.native}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
 
           {/* Mobile Menu Button */}
           <button
@@ -184,7 +231,7 @@ export function Navbar() {
                   }}
                   className="text-sm font-medium tracking-[0.1em] text-foreground block text-left w-full"
                 >
-                  LOGOUT
+                  {t("logout")}
                 </button>
               ) : (
                 <Link
@@ -192,7 +239,7 @@ export function Navbar() {
                   onClick={() => setMobileOpen(false)}
                   className="text-sm font-medium tracking-[0.1em] text-foreground block"
                 >
-                  LOGIN / JOIN
+                  {t("login_join")}
                 </Link>
               )}
             </li>
@@ -202,7 +249,7 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="inline-block rounded-full bg-primary px-5 py-2.5 text-sm font-semibold tracking-[0.1em] text-primary-foreground"
               >
-                BOOK NOW
+                {t("book_now")}
               </Link>
             </li>
           </ul>

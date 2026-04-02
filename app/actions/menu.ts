@@ -3,31 +3,44 @@
 import prisma from "@/lib/prisma";
 
 export async function getMenuItems() {
-  let items = await prisma.menuItem.findMany();
+  try {
+    console.log("Fetching menu items from database...");
+    let items = await prisma.menuItem.findMany();
 
-  // Seed the empty database with mock items if there are no items
-  if (items.length === 0) {
-    const allItems = [
-      { name: "Cheese Bowl", price: 320, category: "Starters", description: "Delicious cheese bowl" },
-      { name: "Veg Manchurian Dry", price: 220, category: "Starters", description: "Spicy and crispy" },
-      { name: "Paneer Chilly Dry", price: 270, category: "Starters", description: "Classic paneer chilly" },
-      { name: "Gobi Manchurian", price: 220, category: "Starters", description: "Cauliflower tossed in sauce" },
-      { name: "Mix Veg", price: 220, category: "Main Course", description: "Mixed vegetables" },
-      { name: "Paneer Butter Masala", price: 270, category: "Main Course", description: "Creamy paneer" },
-      { name: "Paneer Masala", price: 260, category: "Paneer Special", description: "Spicy paneer" },
-      { name: "Misal Pav", price: 110, category: "Breakfast", description: "Traditional Maharashtrian breakfast" },
-      { name: "Coffee", price: 40, category: "Drinks", description: "Hot coffee" },
-      { name: "Tea", price: 30, category: "Drinks", description: "Hot tea" },
-    ];
+    // Seed the empty database with mock items if there are no items
+    if (items.length === 0) {
+      console.log("No items found. Attempting to seed database with default menu...");
+      const allItems = [
+        { name: "Cheese Bowl", price: 320, category: "Starters", description: "Delicious cheese bowl" },
+        { name: "Veg Manchurian Dry", price: 220, category: "Starters", description: "Spicy and crispy" },
+        { name: "Paneer Chilly Dry", price: 270, category: "Starters", description: "Classic paneer chilly" },
+        { name: "Gobi Manchurian", price: 220, category: "Starters", description: "Cauliflower tossed in sauce" },
+        { name: "Mix Veg", price: 220, category: "Main Course", description: "Mixed vegetables" },
+        { name: "Paneer Butter Masala", price: 270, category: "Main Course", description: "Creamy paneer" },
+        { name: "Paneer Masala", price: 260, category: "Paneer Special", description: "Spicy paneer" },
+        { name: "Misal Pav", price: 110, category: "Breakfast", description: "Traditional Maharashtrian breakfast" },
+        { name: "Coffee", price: 40, category: "Drinks", description: "Hot coffee" },
+        { name: "Tea", price: 30, category: "Drinks", description: "Hot tea" },
+      ];
 
-    await prisma.menuItem.createMany({
-      data: allItems,
-    });
+      try {
+        await prisma.menuItem.createMany({
+          data: allItems,
+        });
+        console.log("Successfully seeded mock items.");
+        items = await prisma.menuItem.findMany();
+      } catch (seedError) {
+        console.error("Failed to seed items during fetch:", seedError);
+        // Return empty so at least the UI doesn't crash if seeding fails but connection stays open
+        return [];
+      }
+    }
 
-    items = await prisma.menuItem.findMany();
+    return items;
+  } catch (error) {
+    console.error("CRITICAL ERROR in getMenuItems:", error);
+    throw new Error("Failed to connect to the database. Please check your DATABASE_URL.");
   }
-
-  return items;
 }
 
 export async function addMenuItem(data: { name: string; description: string; price: number; category: string; imageUrl?: string }) {

@@ -36,7 +36,7 @@ export function LocationSection() {
                 Address
               </h3>
               <p className="text-base leading-relaxed text-muted-foreground">
-                Vriandavan Restaurant<br />
+                Vrundavan Restaurant<br />
                 Nandur Village<br />
               Nashik, Maharashtra 422005<br />
                 India
@@ -62,7 +62,7 @@ export function LocationSection() {
               </h3>
               <p className="text-base text-muted-foreground">
                 <a href="mailto:info@vriandavan.com" className="hover:text-primary transition-colors">
-                  info@vriandavan.com
+                  info@vrundavan.com
                 </a>
               </p>
             </div>

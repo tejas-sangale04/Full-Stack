@@ -58,12 +58,12 @@ function MenuContent() {
         setTabs(uniqueCategories)
         
         if (uniqueCategories.length > 0) {
-          // If a URL param is given and is valid, use it, else pick 'Breakfast' if it exists, else the first category
           const defaultTab = uniqueCategories.includes("Breakfast") ? "Breakfast" : uniqueCategories[0];
           setActiveTab(tabParam && uniqueCategories.includes(tabParam) ? tabParam : defaultTab)
         }
       } catch (error) {
         console.error("Failed to load menu", error)
+        alert("Wait! Something went wrong while loading the menu. Please check your database connection or try again later.")
       }
     }
     loadMenu()
@@ -97,7 +97,7 @@ function MenuContent() {
               Our Menus
             </h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
-              At Vriandavan, you&apos;ll find the soul of traditional Indian cooking —
+              At Vrundavan, you&apos;ll find the soul of traditional Indian cooking —
               home kitchens, street stalls, and festive feasts all on one table.
               Come, eat your way through flavours crafted with love, for breakfast,
               lunch, evening chai, or a full dinner spread. Much awaits you.

@@ -10,7 +10,7 @@ const TASKS = [
   { id: "review",     title: "Write a Review",          desc: "Share your dining experience on Google",     points: 50,  icon: "⭐" },
   { id: "refer",      title: "Refer a Friend",           desc: "Bring a friend who dines with us",           points: 100, icon: "👥" },
   { id: "birthday",   title: "Birthday Visit",           desc: "Dine with us on your birthday",              points: 150, icon: "🎂" },
-  { id: "instagram",  title: "Post on Instagram",        desc: "Tag us @Vriandavan in your food post",       points: 75,  icon: "📸" },
+  { id: "instagram",  title: "Post on Instagram",        desc: "Tag us @Vrundavan in your food post",       points: 75,  icon: "📸" },
   { id: "feedback",   title: "Fill Feedback Form",       desc: "Complete our in-restaurant feedback card",   points: 30,  icon: "📝" },
   { id: "visit5",     title: "5th Visit Milestone",      desc: "Complete 5 visits to the restaurant",        points: 200, icon: "🏆" },
   { id: "weekday",    title: "Weekday Lunch",            desc: "Dine on any weekday between 12–3 PM",        points: 40,  icon: "🌞" },
@@ -120,10 +120,6 @@ export default function RewardsPage() {
             <p className="mb-1 text-sm tracking-[0.15em] text-muted-foreground">Welcome back</p>
             <h1 className="font-serif text-4xl text-foreground">My Rewards</h1>
           </div>
-          <button onClick={() => { localStorage.removeItem("session"); router.push("/login") }}
-            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-red-500">
-            <LogOut className="h-3.5 w-3.5" /> Logout
-          </button>
         </div>
 
         {/* Points card */}
