@@ -169,7 +169,7 @@ export function Navbar() {
           </Link>
 
           {/* Language Selector */}
-          <div className="relative group hidden sm:block">
+          <div className="relative group">
             <button
               className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all ${
                 isScrolled 
@@ -264,6 +264,30 @@ export function Navbar() {
               >
                 {t("book_now")}
               </Link>
+            </li>
+            <li className="border-t border-border pt-4">
+              <div className="px-2 py-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-2">
+                {t("language")}
+              </div>
+              <div className="flex flex-wrap gap-2 px-2">
+                {[
+                  { id: "en", label: "EN", native: "English" },
+                  { id: "mr", label: "MR", native: "मराठी" },
+                  { id: "hi", label: "HI", native: "हिंदी" }
+                ].map((lang) => (
+                  <button
+                    key={lang.id}
+                    onClick={() => {
+                      setLanguage(lang.id as "en" | "mr" | "hi")
+                      setMobileOpen(false)
+                    }}
+                    className="flex flex-col items-center justify-center min-w-[60px] p-2 rounded-lg border border-border hover:border-primary hover:bg-primary/5 transition-all active:scale-95"
+                  >
+                    <span className="text-xs font-bold text-foreground">{lang.label}</span>
+                    <span className="text-[8px] text-muted-foreground">{lang.native}</span>
+                  </button>
+                ))}
+              </div>
             </li>
           </ul>
         </div>

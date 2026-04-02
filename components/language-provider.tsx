@@ -54,6 +54,53 @@ const translations: Translations = {
     services_reservations_sub: "For bookings and large groups",
     services_offers_title: "OFFERS",
     services_offers_sub: "Special deals and promotions",
+
+    // Location
+    visit_title: "Visit Us",
+    visit_subtitle: "Find us at our convenient location",
+    address_label: "Address",
+    phone_label: "Phone",
+    email_label: "Email",
+    hours_label: "Opening Hours",
+    directions_btn: "GET DIRECTIONS",
+    mon_fri: "Monday - Friday",
+    sat_sun: "Saturday - Sunday",
+
+    // Menu Page
+    menu_subtitle: "Authentic Indian cuisine",
+    menu_title: "Our Menus",
+    menu_description: "At Vrundavan, you'll find the soul of traditional Indian cooking — home kitchens, street stalls, and festive feasts all on one table. Come, eat your way through flavours crafted with love, for breakfast, lunch, evening chai, or a full dinner spread. Much awaits you.",
+    search_placeholder: "Search menu items...",
+    search_results: "Search Results",
+    no_items_found: "No items found for",
+    results_for: "results for",
+
+    // Offers Page
+    offers_subtitle: "Save more, eat well",
+    offers_title: "Special Offers",
+    offers_description: "Handpicked deals crafted for every occasion",
+    new_offer_badge: "NEW OFFER",
+    special_deal_badge: "SPECIAL DEAL",
+    claim_offer_btn: "CLAIM OFFER",
+
+    // Book Table
+    select_restaurant: "SELECT A RESTAURANT",
+    restaurant_placeholder: "Select a restaurant",
+    diners_label: "NUMBER OF DINERS",
+    date_label: "PREFERRED DINING DATE?",
+    time_label: "TIME SLOT",
+    time_placeholder: "Select Meal Period",
+    requests_label: "ANY SPECIAL REQUESTS?",
+    requests_placeholder: "Select",
+    details_label: "ADDITIONAL DETAILS",
+    details_placeholder: "Eg. allergies, celebrations, or anything you would like us to take care of.",
+    name_placeholder: "Guest Name",
+    phone_placeholder: "Guest Phone Number",
+    email_placeholder: "Guest Email",
+    book_btn: "BOOK TABLE",
+    booking_loading: "BOOKING...",
+    booking_success: "Table Booked Successfully!",
+    booking_error: "Please fill all required fields",
   },
   mr: {
     // Navbar
@@ -97,7 +144,54 @@ const translations: Translations = {
     services_reservations_sub: "बुकिंग आणि मोठ्या गटांसाठी",
     services_offers_title: "ऑफर",
     services_offers_sub: "विशेष सौदे आणि जाहिराती",
-  },
+
+    // Location
+    visit_title: "आम्हाला भेट द्या",
+    visit_subtitle: "आमच्या सोयीस्कर ठिकाणी आम्हाला शोधा",
+    address_label: "पत्ता",
+    phone_label: "फोन",
+    email_label: "ईमेल",
+    hours_label: "उघडण्याच्या वेळा",
+    directions_btn: "दिशानिर्देश मिळवा",
+    mon_fri: "सोमवार - शुक्रवार",
+    sat_sun: "शनिवार - रविवार",
+ 
+     // Menu Page
+     menu_subtitle: "अस्सल भारतीय पाककृती",
+     menu_title: "आमचे मेनू",
+     menu_description: "वृंदावनमध्ये, तुम्हाला पारंपारिक भारतीय स्वयंपाकाचा आत्मा सापडेल - घरगुती स्वयंपाकघर, रस्त्यावरील स्टॉल्स आणि उत्सवाची मेजवानी सर्व एकाच टेबलावर. या, सकाळचा नाश्ता, दुपारचे जेवण, संध्याकाळचा चहा किंवा पूर्ण रात्रीच्या जेवणासाठी प्रेमाने तयार केलेल्या चवींचा आनंद घ्या. बरेच काही तुमची वाट पाहत आहे.",
+     search_placeholder: "मेनू आयटम शोधा...",
+     search_results: "शोध निकाल",
+     no_items_found: "यासाठी कोणतेही आयटम सापडले नाहीत",
+     results_for: "निकाल यासाठी",
+
+    // Offers Page
+    offers_subtitle: "अधिक बचत करा, चांगले जेवा",
+    offers_title: "विशेष ऑफर",
+    offers_description: "प्रत्येक प्रसंगासाठी खास निवडलेले सौदे",
+    new_offer_badge: "नवीन ऑफर",
+    special_deal_badge: "विशेष सौदा",
+    claim_offer_btn: "ऑफर मिळवा",
+
+    // Book Table
+    select_restaurant: "रेस्टॉरंट निवडा",
+    restaurant_placeholder: "रेस्टॉरंट निवडा",
+    diners_label: "जेवणाऱ्यांची संख्या",
+    date_label: "पसंतीची तारीख",
+    time_label: "वेळेची स्लॉट",
+    time_placeholder: "जेवणाची वेळ निवडा",
+    requests_label: "काही खास विनंत्या?",
+    requests_placeholder: "निवडा",
+    details_label: "अतिरिक्त तपशील",
+    details_placeholder: "उदा. ॲलर्जी, उत्सव किंवा आपण आमची काळजी घेऊ इच्छित असलेले काहीही.",
+    name_placeholder: "पाहुण्याचे नाव",
+    phone_placeholder: "पाहुण्याचा फोन नंबर",
+    email_placeholder: "पाहुण्याचा ईमेल",
+    book_btn: "टेबल बुक करा",
+    booking_loading: "बुकिंग होत आहे...",
+    booking_success: "टेबल यशस्वीरित्या बुक झाले!",
+    booking_error: "कृपया सर्व आवश्यक फील्ड भरा",
+   },
   hi: {
     // Navbar
     about: "हमारे बारे में",
@@ -133,7 +227,7 @@ const translations: Translations = {
     about_title: "वृंदावन के बारे में",
     about_p1: "वृंदावन में आपका स्वागत है, जहां पाक उत्कृष्टता कालातीत लालित्य से मिलती है। हमारा रेस्तरां एक अविस्मरणीय भोजन अनुभव प्रदान करता है जो प्रामाणिक स्वाद और असाधारण आतिथ्य का जश्न मनाता है।",
     about_p2: "बेहतरीन सामग्री और पारंपरिक खाना पकाने की तकनीक का उपयोग करने की प्रतिबद्धता के साथ, हम ऐसे व्यंजन तैयार करते हैं जो विरासत और नवाचार की कहानी बताते हैं। प्रत्येक भोजन जुनून के साथ तैयार किया जाता है और यादगार पलों के लिए डिज़ाइन किए गए वातावरण में परोसा जाता है।",
-    about_p3: "वेदर यू'रे जॉइनिंग अस फॉर एन इंटिमेट डिनर और अ स्पेशल सेलिब्रेशन, हमारी डेडिकेटेड टीम यह सुनिश्चित करती है कि हर मुलाकात असाधारण हो।",
+    about_p3: "चाहे आप हमारे साथ इत्मीनान से भोजन के लिए आ रहे हों या किसी विशेष उत्सव के लिए, हमारी समर्पित टीम सुनिश्चित करती है कि आपकी हर मुलाकात असाधारण हो।",
     book_a_table: "टेबल बुक करें",
     services_menus_title: "मेनू",
     services_menus_sub: "नाश्ता, दोपहर और रात का भोजन",
@@ -141,7 +235,54 @@ const translations: Translations = {
     services_reservations_sub: "बुकिंग और बड़े समूहों के लिए",
     services_offers_title: "ऑफ़र",
     services_offers_sub: "विशेष सौदे और प्रचार",
-  },
+
+    // Location
+    visit_title: "हमसे मिलें",
+    visit_subtitle: "हमारे सुविधाजनक स्थान पर हमें खोजें",
+    address_label: "पता",
+    phone_label: "फ़ोन",
+    email_label: "ईमेल",
+    hours_label: "खुलने का समय",
+    directions_btn: "दिशानिर्देश प्राप्त करें",
+    mon_fri: "सोमवार - शुक्रवार",
+    sat_sun: "शनिवार - रविवार",
+ 
+     // Menu Page
+     menu_subtitle: "प्रामाणिक भारतीय व्यंजन",
+     menu_title: "हमारे मेनू",
+     menu_description: "वृंदावन में, आपको पारंपरिक भारतीय खाना पकाने की आत्मा मिलेगी - घरेलू रसोई, सड़क के स्टॉल और उत्सव के दावतें सभी एक ही मेज पर। आइए, नाश्ते, दोपहर के भोजन, शाम की चाय या पूरे रात के खाने के लिए प्यार से तैयार किए गए स्वादों का आनंद लें। बहुत कुछ आपका इंतज़ार कर रहा है।",
+     search_placeholder: "मेनू आइटम खोजें...",
+     search_results: "खोज परिणाम",
+     no_items_found: "के लिए कोई आइटम नहीं मिला",
+     results_for: "परिणाम इसके लिए",
+
+    // Offers Page
+    offers_subtitle: "अधिक बचत करें, अच्छा खाएं",
+    offers_title: "विशेष ऑफ़र",
+    offers_description: "हर अवसर के लिए चुने गए विशेष सौदे",
+    new_offer_badge: "नया ऑफ़र",
+    special_deal_badge: "विशेष सौदा",
+    claim_offer_btn: "ऑफ़र प्राप्त करें",
+
+    // Book Table
+    select_restaurant: "रेस्टोरेंट चुनें",
+    restaurant_placeholder: "एक रेस्टोरेंट चुनें",
+    diners_label: "भोजन करने वालों की संख्या",
+    date_label: "पसंदीदा भोजन तिथि?",
+    time_label: "समय स्लॉट",
+    time_placeholder: "भोजन अवधि चुनें",
+    requests_label: "कोई विशेष अनुरोध?",
+    requests_placeholder: "चुनें",
+    details_label: "अतिरिक्त विवरण",
+    details_placeholder: "जैसे: एलर्जी, उत्सव, या कुछ भी जिसे आप चाहते हैं कि हम ध्यान रखें।",
+    name_placeholder: "अतिथि का नाम",
+    phone_placeholder: "अतिथि फ़ोन नंबर",
+    email_placeholder: "अतिथि ईमेल",
+    book_btn: "टेबल बुक करें",
+    booking_loading: "बुकिंग हो रही है...",
+    booking_success: "टेबल सफलतापूर्वक बुक हो गया!",
+    booking_error: "कृपया सभी आवश्यक फ़ील्ड भरें",
+   },
 }
 
 type LanguageContextType = {

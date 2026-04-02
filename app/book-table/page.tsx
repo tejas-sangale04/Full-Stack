@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar"
 import { UtensilsCrossed, User, Calendar, Clock, MessageSquare, Mail, Phone, X } from "lucide-react"
 import Link from "next/link"
 import { createReservation } from "@/app/actions/reservations"
+import { useLanguage } from "@/components/language-provider"
 
 export default function BookTablePage() {
   
@@ -17,10 +18,11 @@ export default function BookTablePage() {
   const [guestPhone, setGuestPhone] = useState("");
   const [guestEmail, setGuestEmail] = useState("");
   const [status, setStatus] = useState({ loading: false, error: "", success: false });
+  const { t } = useLanguage()
 
   const handleSubmit = async () => {
     if (!guestName || !date || !time || numDiners === 0) {
-      setStatus({ loading: false, error: "Please fill all required fields (Name, Date, Time, Diners)", success: false });
+      setStatus({ loading: false, error: t("booking_error"), success: false });
       return;
     }
     setStatus({ loading: true, error: "", success: false });
@@ -59,7 +61,7 @@ export default function BookTablePage() {
             {/* Select Restaurant */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold tracking-wide text-foreground">
-                SELECT A RESTAURANT
+                {t("select_restaurant")}
               </label>
               <div className="relative">
                 <UtensilsCrossed className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
@@ -68,7 +70,7 @@ export default function BookTablePage() {
                   value={restaurant}
                   onChange={(e) => setRestaurant(e.target.value)}
                 >
-                  <option value="">Select a restaurant</option>
+                  <option value="">{t("restaurant_placeholder")}</option>
                   <option value="Vrundavan Main Dining">Vrundavan Main Dining</option>
                   <option value="Vrundavan Garden">Vrundavan Garden</option>
                 </select>
@@ -78,7 +80,7 @@ export default function BookTablePage() {
             {/* Number of Diners */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold tracking-wide text-foreground">
-                NUMBER OF DINERS
+                {t("diners_label")}
               </label>
               <div className="flex items-center gap-4">
                 <User className="h-5 w-5 text-muted-foreground flex-shrink-0" />
@@ -102,7 +104,7 @@ export default function BookTablePage() {
             {/* Preferred Dining Date */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold tracking-wide text-foreground">
-                PREFERRED DINING DATE?
+                {t("date_label")}
               </label>
               <div className="relative">
                 <Calendar className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
@@ -118,7 +120,7 @@ export default function BookTablePage() {
             {/* Time Slot */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold tracking-wide text-foreground">
-                TIME SLOT
+                {t("time_label")}
               </label>
               <div className="relative">
                 <Clock className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
@@ -127,7 +129,7 @@ export default function BookTablePage() {
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
                 >
-                  <option value="">Select Meal Period</option>
+                  <option value="">{t("time_placeholder")}</option>
                   <option value="Breakfast (7:00 AM - 11:00 AM)">Breakfast (7:00 AM - 11:00 AM)</option>
                   <option value="Lunch (12:00 PM - 3:00 PM)">Lunch (12:00 PM - 3:00 PM)</option>
                   <option value="Dinner (6:00 PM - 11:00 PM)">Dinner (6:00 PM - 11:00 PM)</option>
@@ -141,12 +143,12 @@ export default function BookTablePage() {
             {/* Special Requests */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold tracking-wide text-foreground">
-                ANY SPECIAL REQUESTS?
+                {t("requests_label")}
               </label>
               <div className="relative">
                 <UtensilsCrossed className="absolute left-3 top-4 h-5 w-5 text-muted-foreground" />
                 <select className="w-full appearance-none rounded-lg border border-border bg-background px-10 py-3 text-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
-                  <option>Select</option>
+                  <option>{t("requests_placeholder")}</option>
                   <option>Window Seat</option>
                   <option>Quiet Area</option>
                   <option>Birthday Celebration</option>
@@ -159,7 +161,7 @@ export default function BookTablePage() {
             {/* Additional Details */}
             <div className="space-y-2">
               <label className="block text-sm font-semibold tracking-wide text-foreground">
-                ADDITIONAL DETAILS
+                {t("details_label")}
               </label>
               <div className="relative">
                 <MessageSquare className="absolute left-3 top-4 h-5 w-5 text-muted-foreground" />
@@ -167,7 +169,7 @@ export default function BookTablePage() {
                   rows={3}
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
-                  placeholder="Eg. allergies, celebrations, or anything you would like us to take care of."
+                  placeholder={t("details_placeholder")}
                   className="w-full rounded-lg border border-border bg-background px-10 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary resize-none"
                 />
               </div>
@@ -184,7 +186,7 @@ export default function BookTablePage() {
                   type="text"
                   value={guestName}
                   onChange={(e) => setGuestName(e.target.value)}
-                  placeholder="Guest Name"
+                  placeholder={t("name_placeholder")}
                   className="w-full rounded-lg border border-border bg-background px-10 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                 />
               </div>
@@ -199,7 +201,7 @@ export default function BookTablePage() {
                     type="tel"
                     value={guestPhone}
                     onChange={(e) => setGuestPhone(e.target.value)}
-                    placeholder="Guest Phone Number"
+                    placeholder={t("phone_placeholder")}
                     className="w-full rounded-lg border border-border bg-background px-10 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
                   />
                 </div>
@@ -218,7 +220,7 @@ export default function BookTablePage() {
                 type="email"
                 value={guestEmail}
                 onChange={(e) => setGuestEmail(e.target.value)}
-                placeholder="Guest Email"
+                placeholder={t("email_placeholder")}
                 className="w-full rounded-lg border border-border bg-background px-10 py-3 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
@@ -228,14 +230,14 @@ export default function BookTablePage() {
           <div className="flex flex-col items-center justify-center pt-6 space-y-4">
             {status.error && <p className="text-red-500 font-medium">{status.error}</p>}
             {status.success ? (
-              <p className="text-green-600 font-bold text-lg">Table Booked Successfully!</p>
+              <p className="text-green-600 font-bold text-lg">{t("booking_success")}</p>
             ) : (
               <button 
                 onClick={handleSubmit} 
                 disabled={status.loading}
                 className="rounded-full bg-primary px-12 py-4 text-base font-semibold tracking-wide text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-50"
               >
-                {status.loading ? "BOOKING..." : "BOOK TABLE"}
+                {status.loading ? t("booking_loading") : t("book_btn")}
               </button>
             )}
           </div>

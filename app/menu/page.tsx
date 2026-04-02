@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Search, X } from "lucide-react"
 import { Navbar } from "@/components/navbar"
 import FloatingBookingButton from "@/components/floating-booking-button"
 import { getMenuItems } from "@/app/actions/menu"
+import { useLanguage } from "@/components/language-provider"
 
 type MenuItem = {
   id: string;
@@ -36,6 +37,8 @@ function MenuContent() {
   const [activeTab, setActiveTab] = useState<string>("")
   const [search, setSearch] = useState("")
   const tabBarRef = useRef<HTMLDivElement>(null)
+  
+  const { t } = useLanguage()
 
   useEffect(() => {
     async function loadMenu() {
@@ -91,16 +94,13 @@ function MenuContent() {
         <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-16">
           <div className="flex-1">
             <p className="mb-2 text-sm tracking-[0.15em] text-muted-foreground">
-              Authentic Indian cuisine
+              {t("menu_subtitle")}
             </p>
             <h1 className="font-serif text-5xl leading-tight text-foreground lg:text-6xl">
-              Our Menus
+              {t("menu_title")}
             </h1>
             <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground" style={{ textAlign: "justify" }}>
-              At Vrundavan, you&apos;ll find the soul of traditional Indian cooking —
-              home kitchens, street stalls, and festive feasts all on one table.
-              Come, eat your way through flavours crafted with love, for breakfast,
-              lunch, evening chai, or a full dinner spread. Much awaits you.
+              {t("menu_description")}
             </p>
           </div>
 
@@ -162,7 +162,7 @@ function MenuContent() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search menu items..."
+              placeholder={t("search_placeholder")}
               className="w-full rounded-lg border border-border bg-background pl-9 pr-9 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30"
             />
             {search && (
@@ -176,13 +176,13 @@ function MenuContent() {
           </div>
           {search && (
             <p className="text-sm text-muted-foreground">
-              {filteredItems.length} result{filteredItems.length !== 1 ? "s" : ""} for &quot;{search}&quot;
+              {filteredItems.length} {t("results_for")} &quot;{search}&quot;
             </p>
           )}
         </div>
 
         <h2 className="mb-6 font-serif text-2xl tracking-wide text-foreground">
-          {search ? "Search Results" : activeTab}
+          {search ? t("search_results") : activeTab}
         </h2>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -205,7 +205,7 @@ function MenuContent() {
             ))
           ) : (
             <p className="col-span-3 py-10 text-center text-muted-foreground">
-              No items found for &quot;{search}&quot;
+              {t("no_items_found")} &quot;{search}&quot;
             </p>
           )}
         </div>

@@ -6,6 +6,7 @@ import { Navbar } from "@/components/navbar"
 import FloatingBookingButton from "@/components/floating-booking-button"
 import { Tag, Loader2 } from "lucide-react"
 import { getOffers } from "@/app/actions/offers"
+import { useLanguage } from "@/components/language-provider"
 
 type DBOffer = {
   id: string;
@@ -22,6 +23,7 @@ type DBOffer = {
 export default function OffersPage() {
   const [dbOffers, setDbOffers] = useState<DBOffer[]>([])
   const [loading, setLoading] = useState(true)
+  const { t } = useLanguage()
 
   useEffect(() => {
     async function loadOffers() {
@@ -44,11 +46,11 @@ export default function OffersPage() {
       <main className="mx-auto max-w-[1440px] px-6 py-16 lg:px-16">
         {/* Header */}
         <div className="mb-12 text-center">
-          <p className="mb-2 text-sm tracking-[0.15em] text-muted-foreground">Save more, eat well</p>
-          <h1 className="font-serif text-5xl text-foreground lg:text-6xl">Special Offers</h1>
+          <p className="mb-2 text-sm tracking-[0.15em] text-muted-foreground">{t("offers_subtitle")}</p>
+          <h1 className="font-serif text-5xl text-foreground lg:text-6xl">{t("offers_title")}</h1>
           <div className="mx-auto mt-4 h-1 w-20 bg-primary" />
           <p className="mt-4 text-base text-muted-foreground">
-            Handpicked deals crafted for every occasion
+            {t("offers_description")}
           </p>
         </div>
 
@@ -65,12 +67,12 @@ export default function OffersPage() {
                 className="relative rounded-2xl border border-border bg-background p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/30 flex flex-col"
               >
                 <span className="absolute top-4 right-4 rounded-full px-3 py-1 text-[10px] font-bold tracking-widest text-white bg-primary">
-                  NEW OFFER
+                  {t("new_offer_badge")}
                 </span>
 
                 <div className="mb-3 flex items-center gap-2">
                   <Tag className="h-3.5 w-3.5 text-primary" />
-                  <span className="text-xs font-semibold tracking-[0.15em] text-primary">SPECIAL DEAL</span>
+                  <span className="text-xs font-semibold tracking-[0.15em] text-primary">{t("special_deal_badge")}</span>
                 </div>
 
                 <h2 className="mb-2 font-serif text-2xl text-foreground">{offer.title}</h2>
@@ -91,7 +93,7 @@ export default function OffersPage() {
                       href="/book-table"
                       className="rounded-full bg-primary px-4 py-2 text-xs font-semibold tracking-widest text-primary-foreground transition hover:opacity-90"
                     >
-                      CLAIM OFFER
+                      {t("claim_offer_btn")}
                     </Link>
                   </div>
                 </div>
