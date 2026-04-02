@@ -168,8 +168,8 @@ export function Navbar() {
             {t("book_now")}
           </Link>
 
-          {/* Language Selector */}
-          <div className="relative group">
+          {/* Language Selector - Hidden on mobile, visible on desktop */}
+          <div className="relative group hidden lg:block">
             <button
               className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all ${
                 isScrolled 
