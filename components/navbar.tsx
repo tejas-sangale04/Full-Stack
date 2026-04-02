@@ -72,13 +72,18 @@ export function Navbar() {
             >
               <Link
                 href={link.href}
-                className={`flex items-center gap-1 text-xs font-medium tracking-[0.1em] transition-colors xl:text-sm ${
-                  isScrolled ? 'text-slate-700 hover:text-amber-700' : 'text-foreground hover:text-primary'
+                className={`group/link relative flex items-center gap-1 text-[11px] font-semibold uppercase tracking-[0.2em] transition-all xl:text-xs ${
+                  isScrolled ? 'text-slate-600 hover:text-amber-800' : 'text-foreground/80 hover:text-primary'
                 }`}
               >
-                {link.label}
+                <span className="relative py-1">
+                  {link.label}
+                  <span className={`absolute bottom-0 left-0 h-[1.5px] w-0 bg-current transition-all duration-300 ease-out group-hover/link:w-full ${
+                    isScrolled ? 'bg-amber-800' : 'bg-primary'
+                  }`} />
+                </span>
                 {link.hasDropdown && (
-                  <ChevronDown className="h-3 w-3 text-muted-foreground" />
+                  <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${openDropdown === link.label ? 'rotate-180' : ''}`} />
                 )}
               </Link>
 
@@ -141,11 +146,16 @@ export function Navbar() {
           ) : (
             <Link
               href="/login"
-              className={`hidden text-xs font-medium tracking-[0.1em] transition-colors md:inline-block lg:text-sm ${
-                isScrolled ? 'text-slate-700 hover:text-amber-700' : 'text-foreground hover:text-primary'
+              className={`group/link hidden items-center text-[11px] font-semibold uppercase tracking-[0.2em] transition-all md:inline-flex lg:text-xs ${
+                isScrolled ? 'text-slate-600 hover:text-amber-800' : 'text-foreground/80 hover:text-primary'
               }`}
             >
-              {t("login_join")}
+              <span className="relative py-1">
+                {t("login_join")}
+                <span className={`absolute bottom-0 left-0 h-[1.5px] w-0 bg-current transition-all duration-300 ease-out group-hover/link:w-full ${
+                  isScrolled ? 'bg-amber-800' : 'bg-primary'
+                }`} />
+              </span>
             </Link>
           )}
 
@@ -213,11 +223,14 @@ export function Navbar() {
               <li key={link.label}>
                 <Link
                   href={link.href}
-                  className="flex items-center justify-between text-sm font-medium tracking-[0.1em] text-foreground"
+                  onClick={() => setMobileOpen(false)}
+                  className="flex items-center justify-between text-xs font-bold uppercase tracking-[0.25em] text-foreground/90 py-2 border-b border-border/40 transition-colors active:text-primary active:bg-primary/5"
                 >
                   {link.label}
-                  {link.hasDropdown && (
-                    <ChevronDown className="h-4 w-4 text-muted-foreground" />
+                  {link.hasDropdown ? (
+                    <ChevronRight className="h-4 w-4 text-muted-foreground opacity-50" />
+                  ) : (
+                    <div className="h-1 w-1 rounded-full bg-primary/20" />
                   )}
                 </Link>
               </li>

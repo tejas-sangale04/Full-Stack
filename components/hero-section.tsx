@@ -35,7 +35,7 @@ export function HeroSection() {
 
   return (
     <section className="relative mx-auto max-w-[1440px] px-4 py-4 sm:px-4 lg:px-10 lg:py-6">
-      <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[16/8] lg:aspect-[15/7]">
+      <div className="relative aspect-[7/6] w-full overflow-hidden sm:aspect-[16/8] lg:aspect-[15/7]">
         {/* Decorative border frame */}
         <div className="absolute inset-3 z-10 border border-muted-foreground/20 sm:inset-6 lg:inset-10" />
 
