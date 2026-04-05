@@ -3,7 +3,7 @@ import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { ServicesSection } from "@/components/services-section"
 import { LocationSection } from "@/components/location-section"
-import FloatingBookingButton from "@/components/floating-booking-button"
+//import FloatingBookingButton from "@/components/floating-booking-button"
 
 export default function Home() {
   return (
@@ -15,7 +15,7 @@ export default function Home() {
         <ServicesSection />
         <LocationSection />
       </main>
-      <FloatingBookingButton />
+     {/*<FloatingBookingButton /> */}
     </div>
   )
 }

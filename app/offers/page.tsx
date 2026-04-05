@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Navbar } from "@/components/navbar"
-import FloatingBookingButton from "@/components/floating-booking-button"
+//import FloatingBookingButton from "@/components/floating-booking-button"
 import { Tag, Loader2 } from "lucide-react"
 import { getOffers } from "@/app/actions/offers"
 import { useLanguage } from "@/components/language-provider"
@@ -105,7 +105,7 @@ export default function OffersPage() {
         )}
       </main>
 
-      <FloatingBookingButton />
+     {/* <FloatingBookingButton /> */}
     </div>
   )
 }

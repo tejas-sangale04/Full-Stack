@@ -11,6 +11,8 @@ import { TrendingUp, ShoppingBag, Package, Users, LogOut, RefreshCw, CalendarChe
 import { getReservations } from "@/app/actions/reservations"
 import { getMenuItems, addMenuItem, deleteMenuItem } from "@/app/actions/menu"
 import { getOffers, addOffer, deleteOffer } from "@/app/actions/offers"
+import { getOrders } from "@/app/actions/orders"
+import { getRestaurantStatus, updateRestaurantStatus } from "@/app/actions/status"
 import { useLanguage } from "@/components/language-provider"
 
 type MenuItem = {
@@ -22,7 +24,7 @@ type MenuItem = {
 }
 
 // add Reservation type
-type Reservation = {
+/*ype Reservation = {
   id: string;
   customerName: string;
   email?: string | null;
@@ -33,16 +35,16 @@ type Reservation = {
   time: string;
   partySize: number;
   notes?: string | null;
-}
+}*/
 
 type Order = {
-  id: number; table: string; waiter: string
+  id: string; table: string; waiter: string
   items: { name: string; price: number; qty: number }[]
   total: number; status: string; time: string
   date?: string
 }
 
-type Offer = {
+/*ype Offer = {
   id: string;
   title: string;
   description: string;
@@ -50,44 +52,9 @@ type Offer = {
   discountedPrice?: number | null;
   imageUrl?: string | null;
   isActive: boolean;
-}
+}*/
 
-// Seed demo data if none exists
-function seedDemoData() {
-  const existing = localStorage.getItem("kitchenOrders")
-  if (existing && JSON.parse(existing).length > 0) return
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-  const items = [
-    { name: "Paneer Butter Masala", price: 270 },
-    { name: "Mix Veg", price: 220 },
-    { name: "Veg Spring Roll", price: 260 },
-    { name: "Lassi (Sweet)", price: 50 },
-    { name: "Paneer Tikka Masala", price: 280 },
-    { name: "Tea", price: 30 },
-    { name: "Cheese Bowl", price: 320 },
-  ]
-  const orders: Order[] = []
-  let id = 1000
-  for (let m = 0; m < 12; m++) {
-    const count = Math.floor(Math.random() * 20) + 10
-    for (let i = 0; i < count; i++) {
-      const orderItems = Array.from({ length: Math.floor(Math.random() * 3) + 1 }, () => {
-        const item = items[Math.floor(Math.random() * items.length)]
-        return { ...item, qty: Math.floor(Math.random() * 3) + 1 }
-      })
-      orders.push({
-        id: id++, table: `T-${Math.floor(Math.random() * 10) + 1}`,
-        waiter: ["waiter1", "waiter2"][Math.floor(Math.random() * 2)],
-        items: orderItems,
-        total: orderItems.reduce((s, o) => s + o.price * o.qty, 0),
-        status: "ready",
-        time: "12:00 PM",
-        date: `2025-${String(m + 1).padStart(2, "0")}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, "0")}`,
-      })
-    }
-  }
-  localStorage.setItem("kitchenOrders", JSON.stringify(orders))
-}
+
 
 export const DEFAULT_STOCK = [
   { name: "Paneer", unit: "kg", total: 20, used: 14 },
@@ -108,11 +75,12 @@ export default function AdminPage() {
   const router = useRouter()
   const { data: session, status } = useSession()
   const [orders, setOrders] = useState<Order[]>([])
-  const [reservations, setReservations] = useState<Reservation[]>([])
+ // const [reservations, setReservations] = useState<Reservation[]>([])
   const [stock, setStock] = useState(DEFAULT_STOCK)
-  const [view, setView] = useState<"overview" | "monthly" | "stock" | "reservations" | "menu" | "offers">("overview")
+  const [view, setView] = useState<"overview" | "monthly" | "stock" | "menu">("overview")
   const [menuItems, setMenuItems] = useState<MenuItem[]>([])
-  const [offers, setOffers] = useState<Offer[]>([])
+  //const [offers, setOffers] = useState<Offer[]>([])
+  const [restaurantStatus, setRestaurantStatus] = useState<{ isOpen: boolean, isManual: boolean } | null>(null)
   const { t, setLanguage } = useLanguage()
 
   // New item form state
@@ -121,35 +89,35 @@ export default function AdminPage() {
   const [activeMenuCategory, setActiveMenuCategory] = useState("All")
 
   // Offer form state
-  const [newOffer, setNewOffer] = useState({ title: "", description: "", originalPrice: "", discountedPrice: "", imageUrl: "" })
-  const [isAddingOffer, setIsAddingOffer] = useState(false)
+  //const [newOffer, setNewOffer] = useState({ title: "", description: "", originalPrice: "", discountedPrice: "", imageUrl: "" })
+  //const [isAddingOffer, setIsAddingOffer] = useState(false)
 
   const load = useCallback(async () => {
-    seedDemoData()
-    // Load Kitchen Orders
-    const stored: Order[] = JSON.parse(localStorage.getItem("kitchenOrders") || "[]")
-    const withDates = stored.map(o => ({
-      ...o,
-      date: o.date || new Date().toISOString().split("T")[0]
-    }))
-    setOrders(withDates)
+    // Fetch Kitchen Orders from DB
+    const dbOrders = await getOrders()
+    setOrders(dbOrders as any)
 
     // Load Stock
     const st = localStorage.getItem("restaurantStock")
     if (st) setStock(JSON.parse(st))
     else localStorage.setItem("restaurantStock", JSON.stringify(DEFAULT_STOCK))
 
+
     // Fetch real reservations
-    const resData = await getReservations()
-    setReservations(resData)
+    //const resData = await getReservations()
+    //setReservations(resData)
 
     // Fetch menu items
     const menuData = await getMenuItems()
     setMenuItems(menuData)
 
     // Fetch offers
-    const offerData = await getOffers()
-    setOffers(offerData)
+    //const offerData = await getOffers()
+    //setOffers(offerData)
+
+    // Fetch Restaurant Status
+    const statusData = await getRestaurantStatus()
+    if (statusData) setRestaurantStatus({ isOpen: statusData.isOpen, isManual: statusData.isManual })
   }, [])
 
   const handleAddMenuItem = async (e: React.FormEvent) => {
@@ -180,7 +148,7 @@ export default function AdminPage() {
     }
   }
 
-  const handleAddOffer = async (e: React.FormEvent) => {
+  /*const handleAddOffer = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsAddingOffer(true);
     const res = await addOffer({
@@ -195,7 +163,7 @@ export default function AdminPage() {
       alert("Failed to add offer: " + res.error);
     }
     setIsAddingOffer(false);
-  }
+  }*/
 
   const handleDeleteOffer = async (id: string) => {
     const res = await deleteOffer(id);
@@ -213,6 +181,9 @@ export default function AdminPage() {
       return
     }
     load()
+    // Auto-refresh every 30 seconds
+    const interval = setInterval(load, 30000)
+    return () => clearInterval(interval)
   }, [router, load, status, session])
 
   // Monthly revenue data
@@ -249,7 +220,7 @@ export default function AdminPage() {
   const statCards = [
     { label: "Yearly Revenue", value: `₹${yearlyRevenue.toLocaleString()}`, icon: TrendingUp, color: "text-green-600" },
     { label: "Total Orders", value: totalOrders, icon: ShoppingBag, color: "text-blue-600" },
-    { label: "Upc. Reservations", value: reservations.length, icon: CalendarCheck, color: "text-amber-600" },
+  //  { label: "Upc. Reservations", value: reservations.length, icon: CalendarCheck, color: "text-amber-600" },
    // { label: "Active Staff", value: waiterStats.length + 1, icon: Users, color: "text-purple-600" },
   ]
 
@@ -324,15 +295,86 @@ export default function AdminPage() {
         </div>
       </div>
 
+      {/* Restaurant Status Controller */}
+      <div className="bg-white border-b border-border px-6 py-4 flex flex-wrap items-center gap-6 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100 text-amber-700">
+            <TrendingUp className="h-5 w-5" />
+          </div>
+          <div>
+            <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Restaurant Control</p>
+            <p className="text-sm font-semibold text-foreground">Manage Live Status</p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 bg-muted/30 p-1.5 rounded-xl border border-border">
+          <div className="flex gap-1">
+            <button
+              onClick={async () => {
+                const newStatus = { isOpen: true, isManual: false };
+                setRestaurantStatus(newStatus);
+                await updateRestaurantStatus(newStatus);
+              }}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                !restaurantStatus?.isManual 
+                  ? "bg-white text-amber-700 shadow-sm border border-amber-100" 
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              AUTO (TIME)
+            </button>
+            <button
+              onClick={async () => {
+                const newStatus = { isOpen: true, isManual: true };
+                setRestaurantStatus(newStatus);
+                await updateRestaurantStatus(newStatus);
+              }}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                restaurantStatus?.isManual && restaurantStatus?.isOpen
+                  ? "bg-green-500 text-white shadow-sm" 
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              FORCE OPEN
+            </button>
+            <button
+              onClick={async () => {
+                const newStatus = { isOpen: false, isManual: true };
+                setRestaurantStatus(newStatus);
+                await updateRestaurantStatus(newStatus);
+              }}
+              className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                restaurantStatus?.isManual && !restaurantStatus?.isOpen
+                  ? "bg-red-500 text-white shadow-sm" 
+                  : "text-muted-foreground hover:text-foreground"
+              }`}
+            >
+              FORCE CLOSED
+            </button>
+          </div>
+          
+          <div className="h-6 w-px bg-border mx-1" />
+          
+          <div className="flex items-center gap-2 pr-2">
+            <div className={`h-2 w-2 rounded-full ${
+              restaurantStatus?.isOpen ? "bg-green-500 animate-pulse" : "bg-red-500"
+            }`} />
+            <span className="text-[10px] font-bold uppercase tracking-widest text-foreground">
+              {restaurantStatus?.isOpen ? "System Status: Open" : "System Status: Closed"}
+            </span>
+          </div>
+        </div>
+      </div>
+
       <main className="mx-auto max-w-[1440px] px-4 py-8 lg:px-10">
 
         {/* Nav tabs */}
         <div className="mb-8 flex gap-2 flex-wrap">
-          {(["overview", "monthly", "reservations", "menu", "offers", "stock"] as const).map(tab => (
+          {(["overview", "monthly", "menu", "stock"] as const).map(tab => (
             <button key={tab} onClick={() => setView(tab)}
               className={`rounded-full px-5 py-2 text-xs font-semibold tracking-widest transition capitalize ${view === tab ? "bg-primary text-primary-foreground" : "bg-background border border-border text-muted-foreground hover:text-foreground"
                 }`}>
-              {t(tab === "menu" ? "menu_mgmt" : tab === "offers" ? "offers_mgmt" : tab)}
+              {t(tab === "menu" ? "menu_mgmt" : tab)}
             </button>
           ))}
         </div>
@@ -615,7 +657,7 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* RESERVATIONS */}
+        {/* RESERVATIONS 
         {view === "reservations" && (
           <div className="flex flex-col gap-6">
             <div className="rounded-2xl border border-border bg-background p-6 shadow-sm overflow-x-auto">
@@ -660,10 +702,10 @@ export default function AdminPage() {
           </div>
         )}
 
-        {/* OFFERS MANAGEMENT */}
+        {/* OFFERS MANAGEMENT 
         {view === "offers" && (
           <div className="flex flex-col gap-8">
-            {/* Add Offer Form */}
+            {/* Add Offer Form 
             <div className="rounded-2xl border border-border bg-background p-6 shadow-sm">
               <h2 className="mb-4 font-serif text-xl text-foreground">Add New Offer</h2>
               <form onSubmit={handleAddOffer} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6 items-end">
@@ -691,7 +733,7 @@ export default function AdminPage() {
               </form>
             </div>
 
-            {/* Offers Table */}
+            {/* Offers Table 
             <div className="rounded-2xl border border-border bg-background p-6 shadow-sm overflow-x-auto">
               <h2 className="mb-6 font-serif text-xl text-foreground">Current Offers</h2>
 
@@ -738,7 +780,7 @@ export default function AdminPage() {
               )}
             </div>
           </div>
-        )}
+        )}*/}
 
       </main>
     </div>

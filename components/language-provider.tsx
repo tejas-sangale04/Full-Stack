@@ -18,6 +18,7 @@ const translations: Translations = {
     offers: "OFFERS",
     contact: "CONTACT",
     book_now: "BOOK NOW",
+    restaurant_name: "Vrundavan",
     select_menu: "SELECT A MENU",
     all_day: "All Day",
     starters: "Starters",
@@ -29,6 +30,9 @@ const translations: Translations = {
     logout: "Logout",
     account: "Account",
     language: "Language",
+    open_now: "OPEN NOW",
+    closed: "CLOSED",
+    opens_at: "Opens at",
 
     // Hero Section
 
@@ -106,6 +110,7 @@ const translations: Translations = {
     // Navbar
     about: "आमच्याबद्दल",
     menu: "मेनू",
+    restaurant_name: "वृंदावन",
     offers: "ऑफर",
     contact: "संपर्क",
     book_now: "आत्ता बुक करा",
@@ -120,6 +125,9 @@ const translations: Translations = {
     logout: "लॉगआउट",
     account: "खाते",
     language: "भाषा",
+    open_now: "सुरू आहे",
+    closed: "बंद आहे",
+    opens_at: "सकाळी उघडते",
 
     // Hero Section
     // Admin
@@ -198,6 +206,7 @@ const translations: Translations = {
     menu: "मेनू",
     offers: "ऑफ़र",
     contact: "संपर्क",
+    restaurant_name: "वृंदावन",
     book_now: "अभी बुक करें",
     select_menu: "मेनू चुनें",
     all_day: "पूरे दिन",
@@ -210,6 +219,9 @@ const translations: Translations = {
     logout: "लॉगआउट",
     account: "खाता",
     language: "भाषा",
+    open_now: "खुला है",
+    closed: "बंद है",
+    opens_at: "सुबह खुलता है",
 
     // Hero Section
 

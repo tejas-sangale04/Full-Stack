@@ -8,7 +8,6 @@ async function main() {
     { email: "waiter1", password: "waiter123", role: "waiter" },
     { email: "chef1", password: "chef123", role: "chef" },
     { email: "admin", password: "admin123", role: "admin" },
-    { email: "customer1", password: "cust123", role: "customer" },
   ];
 
   console.log('Seeding demo users...');

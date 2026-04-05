@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
+/*import { motion } from "framer-motion"
 import { UtensilsCrossed } from "lucide-react"
 import Link from "next/link"
 import { useLanguage } from "@/components/language-provider"
@@ -22,7 +22,7 @@ const FloatingBookingButton = () => {
           ease: "easeInOut",
         }}
       >
-        {/* Rotating background frame */}
+        {/* Rotating background frame 
         <motion.div
           className="absolute w-24 h-24 border-2 border-amber-600 rounded-sm"
           animate={{ rotate: 360 }}
@@ -33,7 +33,7 @@ const FloatingBookingButton = () => {
           }}
         />
 
-        {/* Primary button body */}
+        {/* Primary button body 
         <motion.div
           className="relative bg-[#e2c18d] w-26 h-26 flex flex-col items-center justify-center shadow-xl p-4 text-center rounded-sm"
           whileHover={{ scale: 1.05 }}
@@ -49,3 +49,4 @@ const FloatingBookingButton = () => {
 }
 
 export default FloatingBookingButton
+*/

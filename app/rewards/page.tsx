@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react"
 import { useRouter } from "next/navigation"
 import { Star, CheckCircle, Gift, ShoppingCart, LogOut, Trophy } from "lucide-react"
 import { Navbar } from "@/components/navbar"
-import FloatingBookingButton from "@/components/floating-booking-button"
+//import FloatingBookingButton from "@/components/floating-booking-button"
 
 const TASKS = [
   { id: "review",     title: "Write a Review",          desc: "Share your dining experience on Google",     points: 50,  icon: "⭐" },
@@ -251,7 +251,7 @@ export default function RewardsPage() {
         )}
 
       </main>
-      <FloatingBookingButton />
+     {/* <FloatingBookingButton /> */}
     </div>
   )
 }

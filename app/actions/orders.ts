@@ -48,6 +48,7 @@ export async function getOrders() {
     table: order.tableNumber.toString(),
     status: order.status.toLowerCase(),
     time: order.createdAt.toLocaleTimeString(),
+    date: order.createdAt.toISOString(),
     total: order.items.reduce((sum, item) => sum + item.quantity * item.menuItem.price, 0),
     items: order.items.map(item => ({
       name: item.menuItem.name,

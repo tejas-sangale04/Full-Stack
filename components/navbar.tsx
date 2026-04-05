@@ -6,11 +6,14 @@ import Link from "next/link"
 import { useSession, signOut } from "next-auth/react"
 import SparkBackground from "./spark"
 import { useLanguage } from "@/components/language-provider"
+import { getRestaurantStatus } from "@/app/actions/status"
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const [currentTime, setCurrentTime] = useState(new Date())
   
   const { data: session } = useSession()
   const { t, setLanguage } = useLanguage()
@@ -25,7 +28,7 @@ export function Navbar() {
       { label: t("breakfast"), href: "/menu?tab=breakfast" },
       { label: t("drinks"), href: "/menu?tab=drinks" }
     ]},
-    { label: t("offers"), href: "/offers"},
+   /* { label: t("offers"), href: "/offers"},*/
     { label: t("contact"), href: "#location"  },
   ]
 
@@ -34,8 +37,32 @@ export function Navbar() {
       setIsScrolled(window.scrollY > 50)
     }
 
+    const checkStatus = async () => {
+      const now = new Date()
+      setCurrentTime(now)
+      
+      // Fetch status from DB
+      const dbStatus = await getRestaurantStatus()
+      
+      if (dbStatus?.isManual) {
+        // Use manual override
+        setIsOpen(dbStatus.isOpen)
+      } else {
+        // Fall back to time-based logic
+        const hours = now.getHours()
+        // Open from 8:00 AM to 11:00 PM
+        setIsOpen(hours >= 8 && hours < 23)
+      }
+    }
+
+    checkStatus()
+    const timer = setInterval(checkStatus, 30000) // Update every 30 seconds
+
     window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", handleScroll)
+      clearInterval(timer)
+    }
   }, [])
 
   return (
@@ -57,7 +84,7 @@ export function Navbar() {
           <span className={`font-serif text-2xl tracking-[0.25em] lg:text-3xl transition-colors ${
             isScrolled ? 'text-amber-800' : 'text-primary'
           }`}>
-            VRUNDAVAN
+            {t("restaurant_name").toUpperCase()}
           </span>
         </Link>
 
@@ -113,6 +140,22 @@ export function Navbar() {
 
         {/* Right Actions */}
         <div className="flex items-center gap-4">
+          {/* Status Indicator (NEW Proper Place) */}
+          <div className={`hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full border transition-all duration-300 ${
+            isScrolled 
+              ? 'border-amber-100 bg-amber-50/50' 
+              : 'border-primary/10 bg-primary/5'
+          }`}>
+            <div className={`h-1.5 w-1.5 rounded-full transition-all duration-500 ${
+              isOpen ? 'bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-red-500'
+            }`} />
+            <span className={`text-[9px] font-bold tracking-widest uppercase transition-colors ${
+              isScrolled ? 'text-amber-800/70' : 'text-primary/70'
+            }`}>
+              {isOpen ? t("open_now") : t("closed")}
+            </span>
+          </div>
+
           {session ? (
             <div className="relative group">
               <button
@@ -151,7 +194,7 @@ export function Navbar() {
               }`}
             >
               <span className="relative py-1">
-                {t("login_join")}
+                {t("login")}
                 <span className={`absolute bottom-0 left-0 h-[1.5px] w-0 bg-current transition-all duration-300 ease-out group-hover/link:w-full ${
                   isScrolled ? 'bg-amber-800' : 'bg-primary'
                 }`} />
@@ -159,7 +202,7 @@ export function Navbar() {
             </Link>
           )}
 
-          <Link
+          {/*<Link
             href="/book-table"
             className={`hidden rounded-full px-5 py-2 text-xs font-semibold tracking-[0.1em] transition-all hover:opacity-90 hover:shadow-lg md:inline-block lg:text-sm ${
               isScrolled ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white' : 'bg-primary text-primary-foreground'
@@ -218,6 +261,21 @@ export function Navbar() {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div className="relative z-10 border-t border-border bg-background px-6 pb-6 lg:hidden">
+          {/* Status Indicator (Mobile) */}
+          <div className="flex items-center justify-between py-4 border-b border-border/40">
+            <span className="text-[10px] font-bold tracking-widest uppercase text-muted-foreground">
+              Restaurant Status
+            </span>
+            <div className="flex items-center gap-2 px-3 py-1 rounded-full border border-primary/10 bg-primary/5">
+              <div className={`h-1.5 w-1.5 rounded-full transition-all duration-500 ${
+                isOpen ? 'bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.6)]' : 'bg-red-500'
+              }`} />
+              <span className="text-[9px] font-bold tracking-widest uppercase text-primary/70">
+                {isOpen ? t("open_now") : t("closed")}
+              </span>
+            </div>
+          </div>
+
           <ul className="flex flex-col gap-4 pt-4">
             {navLinks.map((link) => (
               <li key={link.label}>

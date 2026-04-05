@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, Suspense } from "react"
 import { useSearchParams } from "next/navigation"
 import { ChevronLeft, ChevronRight, Search, X } from "lucide-react"
 import { Navbar } from "@/components/navbar"
-import FloatingBookingButton from "@/components/floating-booking-button"
+//import FloatingBookingButton from "@/components/floating-booking-button"
 import { getMenuItems } from "@/app/actions/menu"
 import { useLanguage } from "@/components/language-provider"
 
@@ -211,7 +211,7 @@ function MenuContent() {
         </div>
       </main>
 
-      <FloatingBookingButton />
+      {/*<FloatingBookingButton />*/}
     </div>
   )
 }
