@@ -247,6 +247,19 @@ export function Navbar() {
             </div>
           </div>
 
+          {/* Mobile Logout Button (Visible only when logged in) */}
+          {session && (
+            <button
+              onClick={() => signOut()}
+              className={`flex h-9 w-9 items-center justify-center rounded-full transition-all lg:hidden ${
+                isScrolled ? "text-red-700 bg-red-50 hover:bg-red-100" : "text-red-500 bg-red-50/50 hover:bg-red-50"
+              }`}
+              aria-label={t("logout")}
+            >
+              <LogOut className="h-4 w-4" />
+            </button>
+          )}
+
           {/* Mobile Menu Button */}
           <button
             className="flex h-9 w-9 items-center justify-center text-foreground lg:hidden"
@@ -300,8 +313,9 @@ export function Navbar() {
                     signOut()
                     setMobileOpen(false)
                   }}
-                  className="text-sm font-medium tracking-[0.1em] text-foreground block text-left w-full"
+                  className="flex items-center gap-3 text-sm font-bold tracking-[0.1em] text-red-600 block text-left w-full py-2 hover:bg-red-50 rounded-lg transition-colors"
                 >
+                  <LogOut className="h-4 w-4" />
                   {t("logout")}
                 </button>
               ) : (
