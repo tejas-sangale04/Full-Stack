@@ -202,14 +202,7 @@ export function Navbar() {
             </Link>
           )}
 
-          {/*<Link
-            href="/book-table"
-            className={`hidden rounded-full px-5 py-2 text-xs font-semibold tracking-[0.1em] transition-all hover:opacity-90 hover:shadow-lg md:inline-block lg:text-sm ${
-              isScrolled ? 'bg-gradient-to-r from-amber-600 to-amber-700 text-white' : 'bg-primary text-primary-foreground'
-            }`}
-          >
-            {t("book_now")}
-          </Link>
+
 
           {/* Language Selector - Hidden on mobile, visible on desktop */}
           <div className="relative group hidden lg:block">
@@ -328,15 +321,7 @@ export function Navbar() {
                 </Link>
               )}
             </li>
-            <li>
-              <Link
-                href="/book-table"
-                onClick={() => setMobileOpen(false)}
-                className="inline-block rounded-full bg-primary px-5 py-2.5 text-sm font-semibold tracking-[0.1em] text-primary-foreground"
-              >
-                {t("book_now")}
-              </Link>
-            </li>
+
             <li className="border-t border-border pt-4">
               <div className="px-2 py-2 text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-2">
                 {t("language")}

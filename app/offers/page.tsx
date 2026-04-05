@@ -89,12 +89,7 @@ export default function OffersPage() {
                         {Math.round(((offer.originalPrice - offer.discountedPrice) / offer.originalPrice) * 100)}% OFF
                       </span>
                     )}
-                    <Link
-                      href="/book-table"
-                      className="rounded-full bg-primary px-4 py-2 text-xs font-semibold tracking-widest text-primary-foreground transition hover:opacity-90"
-                    >
-                      {t("claim_offer_btn")}
-                    </Link>
+
                   </div>
                 </div>
               </div>
