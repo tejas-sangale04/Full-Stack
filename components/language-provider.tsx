@@ -59,6 +59,21 @@ const translations: Translations = {
     services_offers_title: "OFFERS",
     services_offers_sub: "Special deals and promotions",
 
+    // Farm to Table Section
+    differentiator: "THE BIG DIFFERENTIATOR",
+    farm_to_table: "Farm to Table",
+    farm_desc: "At Vrundavan, we are very conscious of our own impact on the environment - this goes hand in hand with how passionate we are about providing our guests with a wholesome and soulful dining experience.",
+    read_more: "READ MORE",
+    operational_hours: "Operational Hours",
+    dine_in: "Dine In",
+    home_delivery: "Home Delivery",
+    time_11am: "11:00am",
+    time_1am: "1:00am",
+    make_reservation_btn: "MAKE A RESERVATION",
+    also_call: "You can also call:",
+    call_number: "750 748 6969",
+    reservation_suffix: "to make a reservation.",
+
     // Location
     visit_title: "Visit Us",
     visit_subtitle: "Find us at our convenient location",
@@ -152,6 +167,21 @@ const translations: Translations = {
     services_reservations_sub: "बुकिंग आणि मोठ्या गटांसाठी",
     services_offers_title: "ऑफर",
     services_offers_sub: "विशेष सौदे आणि जाहिराती",
+
+    // Farm to Table Section
+    differentiator: "सर्वात मोठा वेगळेपणा",
+    farm_to_table: "शेतापासून टेबलपर्यंत",
+    farm_desc: "वृंदावनमध्ये, आम्ही पर्यावरणावरील आमच्या प्रभावाबद्दल खूप जागरूक आहोत - हे आमच्या अतिथींना आरोग्यदायी आणि आत्म्याला तृप्त करणारा जेवणाचा अनुभव प्रदान करण्याच्या आमच्या तळमळीशी जोडलेले आहे.",
+    read_more: "अधिक वाचा",
+    operational_hours: "उघडण्याच्या वेळा",
+    dine_in: "डाइन इन",
+    home_delivery: "होम डिलिव्हरी",
+    time_11am: "11:00am",
+    time_1am: "1:00am",
+    make_reservation_btn: "आरक्षण करा",
+    also_call: "तुम्ही यासाठी कॉल देखील करू शकता:",
+    call_number: "750 748 6969",
+    reservation_suffix: "आरक्षण करण्यासाठी.",
 
     // Location
     visit_title: "आम्हाला भेट द्या",
@@ -247,6 +277,21 @@ const translations: Translations = {
     services_reservations_sub: "बुकिंग और बड़े समूहों के लिए",
     services_offers_title: "ऑफ़र",
     services_offers_sub: "विशेष सौदे और प्रचार",
+
+    // Farm to Table Section
+    differentiator: "सबसे बड़ा अंतर",
+    farm_to_table: "खेत से मेज तक",
+    farm_desc: "वृंदावन में, हम पर्यावरण पर अपने प्रभाव के प्रति बहुत जागरूक हैं - यह हमारे मेहमानों को पौष्टिक और आत्मा को तृप्त करने वाला भोजन अनुभव प्रदान करने के हमारे जुनून के साथ-साथ चलता है।",
+    read_more: "और पढ़ें",
+    operational_hours: "खुलने का समय",
+    dine_in: "डाइन इन",
+    home_delivery: "होम डिलीवरी",
+    time_11am: "11:00am",
+    time_1am: "1:00am",
+    make_reservation_btn: "आरक्षण करें",
+    also_call: "आप इसके लिए कॉल भी कर सकते हैं:",
+    call_number: "750 748 6969",
+    reservation_suffix: "आरक्षण करने के लिए।",
 
     // Location
     visit_title: "हमसे मिलें",

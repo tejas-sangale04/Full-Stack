@@ -42,8 +42,7 @@
                  {t("address_label")}
                </h3>
                <p className="text-base leading-relaxed text-muted-foreground">
-                 Vrundavan Restaurant<br />
-                 Nandur Village<br />
+                Nandur naka jatra Link Road Vrundavan hotel<br />
                Nashik, Maharashtra 422005<br />
                  India
                </p>
@@ -56,7 +55,13 @@
                </h3>
                <p className="text-base text-muted-foreground">
                  <a href="tel:+911234567890" className="hover:text-primary transition-colors">
-                   +91 9456872637
+                   +91 9403860789
+                   
+                 </a>
+                 </p>
+                 <p className="text-base text-muted-foreground">
+                 <a href="tel:+919011320550" className="hover:text-primary transition-colors">
+                   +91 9011320550
                  </a>
                </p>
              </div>
@@ -67,8 +72,8 @@
                  {t("email_label")}
                </h3>
                <p className="text-base text-muted-foreground">
-                 <a href="mailto:info@vriandavan.com" className="hover:text-primary transition-colors">
-                   info@vrundavan.com
+                 <a href="mailto:vrundavanhotelhotel@gmail.com" className="hover:text-primary transition-colors">
+                  vrundavanhotelhotel@gmail.com
                  </a>
                </p>
              </div>
@@ -79,7 +84,7 @@
                  {t("hours_label")}
                </h3>
                <div className="space-y-1 text-base text-muted-foreground">
-                 <p>{t("mon_fri")}: 11:00 AM - 11:00 PM</p>
+                 <p>{t("mon_fri")}: 10:00 AM - 11:00 PM</p>
                  <p>{t("sat_sun")}: 10:00 AM - 12:00 AM</p>
                </div>
              </div>
