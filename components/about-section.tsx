@@ -13,9 +13,9 @@ import { useLanguage } from "@/components/language-provider"
          <div className="relative order-2 lg:order-1">
            {/* Decorative border frame */}
            <div className="absolute -inset-4 border-2 border-primary/20 sm:-inset-6" />
-           <div className="relative aspect-[4/3] w-full overflow-hidden">
+           <div className="relative aspect-[6/3] w-full overflow-hidden">
              <Image
-               src="/entry_1.jpeg"
+               src="/entry3.png"
                alt="Vrundavan restaurant interior"
                fill
                className="object-cover"

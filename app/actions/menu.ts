@@ -19,8 +19,6 @@ export async function getMenuItems() {
         { name: "Paneer Butter Masala", price: 270, category: "Main Course", description: "Creamy paneer" },
         { name: "Paneer Masala", price: 260, category: "Paneer Special", description: "Spicy paneer" },
         { name: "Misal Pav", price: 110, category: "Breakfast", description: "Traditional Maharashtrian breakfast" },
-        { name: "Coffee", price: 40, category: "Drinks", description: "Hot coffee" },
-        { name: "Tea", price: 30, category: "Drinks", description: "Hot tea" },
       ];
 
       try {

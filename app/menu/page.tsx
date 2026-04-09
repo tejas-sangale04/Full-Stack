@@ -46,6 +46,7 @@ function MenuContent() {
         const fetchedItems = await getMenuItems()
         setDbItems(fetchedItems)
         const uniqueCategories = Array.from(new Set(fetchedItems.map(i => i.category)))
+          .filter(cat => cat !== "Drinks")
         
         // Ensure "Breakfast" is default if not specified
         const standardOrder = ["All Day", "Breakfast", "Cold Beverages", "Starters", "Main Course", "Paneer Special", "Marathi Special", "Tandoori Bread", "Basmati Ki Khushboo"]

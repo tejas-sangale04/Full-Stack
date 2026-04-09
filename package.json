@@ -7,7 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "report:merge": "mochawesome-merge cypress/reports/*.json > combined-report.json",
+    "report:generate": "marge combined-report.json -f index -o cypress/reports/html",
+    "report": "npm run report:merge && npm run report:generate",
+    "cypress:test-report": "npm run cypress:run & npm run report"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -72,6 +78,10 @@
     "@types/node": "^22",
     "@types/react": "19.2.14",
     "@types/react-dom": "19.2.3",
+    "cypress": "^15.13.1",
+    "mochawesome": "^7.1.4",
+    "mochawesome-merge": "^5.1.1",
+    "mochawesome-report-generator": "^6.3.2",
     "postcss": "^8.5.8",
     "prisma": "^5.22.0",
     "tailwindcss": "^4.2.1",

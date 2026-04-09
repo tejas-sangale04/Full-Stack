@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-04-08T18:30:25.302Z",
+    "end": "2026-04-08T18:30:30.084Z",
+    "duration": 4782,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ce87c655-6e67-4a35-9cc4-f19cd706dfec",
+      "title": "",
+      "fullFile": "cypress\\e2e\\login.cy.ts",
+      "file": "cypress\\e2e\\login.cy.ts",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "fa819ac3-e54c-4353-b96d-a189939e1e34",
+          "title": "Login Flow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should login successfully as a waiter",
+              "fullTitle": "Login Flow should login successfully as a waiter",
+              "timedOut": null,
+              "duration": 1800,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('waiter1', 'waiter123');\n// After login, it should redirect to /waiter\ncy.url().should('include', '/waiter');\ncy.contains('Take Order').should('exist');",
+              "err": {},
+              "uuid": "8b5fdab1-6f64-424d-84fd-96827638bd90",
+              "parentUUID": "fa819ac3-e54c-4353-b96d-a189939e1e34",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should login successfully as admin",
+              "fullTitle": "Login Flow should login successfully as admin",
+              "timedOut": null,
+              "duration": 1604,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('admin', 'admin123');\n// After login, it should redirect to /admin\ncy.url().should('include', '/admin');\ncy.contains('Yearly Revenue').should('exist');",
+              "err": {},
+              "uuid": "35fe040f-7d36-4b02-9bec-a4430841b199",
+              "parentUUID": "fa819ac3-e54c-4353-b96d-a189939e1e34",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "should show error for invalid credentials",
+              "fullTitle": "Login Flow should show error for invalid credentials",
+              "timedOut": null,
+              "duration": 1266,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.login('wronguser', 'wrongpass');\ncy.get('.text-red-500').should('contain', 'Invalid username or password');",
+              "err": {},
+              "uuid": "a333da6e-da55-4b0e-bb03-a5967b62efe0",
+              "parentUUID": "fa819ac3-e54c-4353-b96d-a189939e1e34",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8b5fdab1-6f64-424d-84fd-96827638bd90",
+            "35fe040f-7d36-4b02-9bec-a4430841b199",
+            "a333da6e-da55-4b0e-bb03-a5967b62efe0"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4670,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
