@@ -7,6 +7,7 @@ import Image from "next/image"
 export function SplashScreen() {
   const [isVisible, setIsVisible] = useState(true)
   const [showMarathi, setShowMarathi] = useState(false)
+  const [hasSeen, setHasSeen] = useState(true)
 
   // Marathi word with proper character grouping (graphemes)
   // "वृंदावन" -> ["वृ", "ं", "द", "ा", "व", "न"] or similar grouping
@@ -15,21 +16,30 @@ export function SplashScreen() {
   const marathiChars = marathiWord.match(/.\p{M}*/gu) || [marathiWord]
 
   useEffect(() => {
-    // Transition to Marathi after English is fully revealed
-    const marathiTimer = setTimeout(() => {
-      setShowMarathi(true)
-    }, 4500)
+    const seen = sessionStorage.getItem("hasSeenSplash")
+    
+    if (!seen) {
+      setHasSeen(false)
+      sessionStorage.setItem("hasSeenSplash", "true")
 
-    // Final exit
-    const hideTimer = setTimeout(() => {
-      setIsVisible(false)
-    }, 9000)
+      // Transition to Marathi after English is fully revealed
+      const marathiTimer = setTimeout(() => {
+        setShowMarathi(true)
+      }, 4500)
 
-    return () => {
-      clearTimeout(marathiTimer)
-      clearTimeout(hideTimer)
+      // Final exit
+      const hideTimer = setTimeout(() => {
+        setIsVisible(false)
+      }, 9000)
+
+      return () => {
+        clearTimeout(marathiTimer)
+        clearTimeout(hideTimer)
+      }
     }
   }, [])
+
+  if (hasSeen) return null;
 
   return (
     <AnimatePresence>

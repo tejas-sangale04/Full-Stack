@@ -31,13 +31,13 @@ export default function LoginPage() {
       } else {
         const session = await getSession()
         const role = session?.user?.role
-        
+
         if (role === "waiter") router.push("/waiter")
         else if (role === "chef") router.push("/kitchen")
 
         else if (role === "admin") router.push("/admin")
         else router.push("/")
-        
+
         router.refresh()
       }
     } catch (err) {
@@ -99,14 +99,6 @@ export default function LoginPage() {
               {loading ? "LOGGING IN..." : "LOGIN"}
             </button>
           </form>
-
-        {/*  <div className="mt-6 rounded-lg bg-muted/50 p-4 text-xs text-muted-foreground">
-            <p className="font-semibold mb-1">Demo credentials:</p>
-            <p>Waiter: waiter1 / waiter123</p>
-            <p>Chef: chef1 / chef123</p>
-            <p>Admin: admin / admin123</p>
-
-          </div>*/}
         </div>
       </main>
     </div>

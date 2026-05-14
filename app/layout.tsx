@@ -10,8 +10,8 @@ const _playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playf
 const _notoDevanagari = Noto_Serif_Devanagari({ subsets: ["devanagari"], variable: "--font-noto-devanagari" });
 
 export const metadata: Metadata = {
-  title: 'Vrindavan Hotels & Resorts',
-  description: 'Experience luxury hospitality at Vrindavan Hotels & Resorts. Discover destinations, dining, and exclusive offers.',
+  title: 'Vrundavan Hotels & Resorts',
+  description: 'Experience luxury hospitality at Vrundavan Hotels & Resorts. Discover destinations, dining, and exclusive offers.',
   generator: 'v0.app',
   icons: {
     icon: [

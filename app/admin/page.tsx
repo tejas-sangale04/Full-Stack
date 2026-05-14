@@ -8,9 +8,7 @@ import {
   LineChart, Line, CartesianGrid, Legend
 } from "recharts"
 import { TrendingUp, ShoppingBag, Package, Users, LogOut, RefreshCw, CalendarCheck, Trash2, Plus, ChevronDown, Languages } from "lucide-react"
-import { getReservations } from "@/app/actions/reservations"
 import { getMenuItems, addMenuItem, deleteMenuItem } from "@/app/actions/menu"
-import { getOffers, addOffer, deleteOffer } from "@/app/actions/offers"
 import { getOrders } from "@/app/actions/orders"
 import { getRestaurantStatus, updateRestaurantStatus } from "@/app/actions/status"
 import { useLanguage } from "@/components/language-provider"
@@ -145,32 +143,6 @@ export default function AdminPage() {
       load(); // Refresh list
     } else {
       alert("Failed to delete menu item: " + res.error);
-    }
-  }
-
-  /*const handleAddOffer = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsAddingOffer(true);
-    const res = await addOffer({
-      ...newOffer,
-      originalPrice: newOffer.originalPrice ? Number(newOffer.originalPrice) : undefined,
-      discountedPrice: newOffer.discountedPrice ? Number(newOffer.discountedPrice) : undefined,
-    });
-    if (res.success) {
-      setNewOffer({ title: "", description: "", originalPrice: "", discountedPrice: "", imageUrl: "" });
-      load(); // Refresh list
-    } else {
-      alert("Failed to add offer: " + res.error);
-    }
-    setIsAddingOffer(false);
-  }*/
-
-  const handleDeleteOffer = async (id: string) => {
-    const res = await deleteOffer(id);
-    if (res.success) {
-      load(); // Refresh list
-    } else {
-      alert("Failed to delete offer: " + res.error);
     }
   }
 

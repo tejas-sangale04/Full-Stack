@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { UtensilsCrossed, ChevronLeft, ChevronRight } from "lucide-react"
-import Link from "next/link"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+
 
 const heroImages = [
   "/dish_1.jpg",
@@ -72,16 +72,6 @@ export function HeroSection() {
           <ChevronRight className="h-6 w-6 sm:h-8 sm:w-8" />
         </button>
 
-        {/*
-        <Link
-          href="/book-table"
-          className="absolute bottom-8 right-8 z-20 flex flex-col items-center gap-3 rounded-lg bg-background/95 px-6 py-5 shadow-lg transition-all hover:scale-105 hover:bg-background sm:bottom-12 sm:right-12 lg:bottom-16 lg:right-16"
-        >
-          <UtensilsCrossed className="h-12 w-12 text-foreground" strokeWidth={1.5} />
-          <span className="text-sm font-semibold tracking-wide text-foreground">
-            Book A Table
-          </span>
-        </Link>*/}
 
         {/* Slider Indicators */}
         <div className="absolute bottom-8 left-1/2 z-20 flex -translate-x-1/2 gap-2 sm:bottom-12 lg:bottom-16">

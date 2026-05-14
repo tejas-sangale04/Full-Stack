@@ -92,6 +92,7 @@ const translations: Translations = {
     search_results: "Search Results",
     no_items_found: "No items found for",
     results_for: "results for",
+    misal_pav: "Misal Pav",
 
     // Offers Page
     offers_subtitle: "Save more, eat well",
@@ -200,6 +201,7 @@ const translations: Translations = {
      search_results: "शोध निकाल",
      no_items_found: "यासाठी कोणतेही आयटम सापडले नाहीत",
      results_for: "निकाल यासाठी",
+     misal_pav: "मिसळ पाव",
 
     // Offers Page
     offers_subtitle: "अधिक बचत करा, चांगले जेवा",

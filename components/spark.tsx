@@ -14,7 +14,7 @@ const SparkBackground = () => {
     }).then(() => setInit(true));
   }, []);
 
-  const options: ISourceOptions = {
+  const options: ISourceOptions = { 
     fullScreen: { enable: false }, 
     fpsLimit: 150,
     particles: {

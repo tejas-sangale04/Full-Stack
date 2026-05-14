@@ -1,0 +1,31 @@
+.simple-header{
+    position:sticky;
+    border-bottom: 1px solid #e5e5e5;
+    top:0;
+    padding: 15px 15px;
+    z-index: 100px;
+}
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.simple-logo{
+    font-size:24px;
+    font-weight: bold;
+    text-decoration: none;  
+}
+
+.simple-nav-links{
+    display:flex;
+    justify-content:center;
+    gap: 30px;
+}
+
+.simple-login-btn{
+    padding: 10px 20px;
+    border: 1px soild blue;
+    border-radius: 5px;
+    font-weight: bold;
+}

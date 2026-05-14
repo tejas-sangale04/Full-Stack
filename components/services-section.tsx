@@ -15,26 +15,10 @@ export function ServicesSection() {
       id: "menus",
       title: t("services_menus_title"),
       subtitle: t("services_menus_sub"),
-      images: ["/breakfast_image.jpg", "/placeholder.jpg", "/placeholder.jpg"],
+      images: ["/breakfast_image.jpg"],
       link: "/menu",
       boxSize: "px-6 py-6",
     },
-    /*{
-      id: "reservations",
-      title: t("services_reservations_title"),
-      subtitle: t("services_reservations_sub"),
-      images: ["/reservation.jpg", "/placeholder.jpg", "/placeholder.jpg"],
-      link: "/book-table",
-      boxSize: "px-4 py-4",
-    },*/
-    /*{
-      id: "offers",
-      title: t("services_offers_title"),
-      subtitle: t("services_offers_sub"),
-      images: ["/offers.png", "/placeholder.jpg", "/placeholder.jpg"],
-      link: "/offers",
-      boxSize: "px-6 py-6",
-    },*/
   ]
 
   const handleMouseEnter = (index: number) => {

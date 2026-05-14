@@ -68,3 +68,9 @@ export async function deleteMenuItem(id: string) {
     return { success: false, error: error.message };
   }
 }
+/*
+app/admin/page.tsx)
+When the admin wants to add a new item to the menu, they fill out a form. 
+Instead of making an API request, the onSubmit handler of that form calls the Server Action directly with the form data.
+
+File: app/admin/page.tsx*/
