@@ -54,10 +54,10 @@ export async function GET() {
       data: newItems
     });
 
-    return NextResponse.json({ 
-      success: true, 
+    return NextResponse.json({
+      success: true,
       deletedCount: deleted.count,
-      addedCount: added.count 
+      addedCount: added.count
     });
   } catch (error: any) {
     return NextResponse.json({ success: false, error: error.message });
