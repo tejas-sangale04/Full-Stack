@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="roundedClip">
+      <rect width="48" height="48" rx="8" ry="8"/>
+    </clipPath>
+  </defs>
+  
+  <!-- Background with rounded corners -->
+  <rect width="48" height="48" rx="8" ry="8" fill="white"/>
+  
+  <!-- Your logo image -->
+  <image href="./icon.png" width="48" height="48" clip-path="url(#roundedClip)"/>
+</svg>
