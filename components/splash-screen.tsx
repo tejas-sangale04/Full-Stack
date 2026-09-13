@@ -25,12 +25,12 @@ export function SplashScreen() {
       // Transition to Marathi after English is fully revealed
       const marathiTimer = setTimeout(() => {
         setShowMarathi(true)
-      }, 4500)
+      }, 3500)
 
       // Final exit
       const hideTimer = setTimeout(() => {
         setIsVisible(false)
-      }, 9000)
+      }, 3000)
 
       return () => {
         clearTimeout(marathiTimer)
@@ -64,7 +64,7 @@ export function SplashScreen() {
               className="absolute inset-0"
             >
               <Image
-                src="/startimage.png"
+                src="/startimage.webp"
                 alt="Vrundavan Welcome"
                 fill
                 className="object-cover"
@@ -80,16 +80,6 @@ export function SplashScreen() {
                 animate="visible"
                 className="text-center"
               >
-                {/* Decorative Leading Dot */}
-                <motion.div
-                  initial={{ x: -100, opacity: 0 }}
-                  animate={{
-                    x: [-100, 200],
-                    opacity: [0, 1, 0],
-                    transition: { duration: 2, ease: "linear" }
-                  }}
-                  className="mx-auto mb-8 h-3 w-3 rounded-full bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]"
-                />
 
                 <div className="flex flex-col items-center">
                   {/* Top Line: "Welcome to" */}
@@ -124,44 +114,25 @@ export function SplashScreen() {
 
                   {/* Brand Name Swap Area */}
                   <div className="relative h-24 sm:h-32 lg:h-48 flex items-center justify-center min-w-[300px]">
-                    <AnimatePresence mode="wait">
-                      {!showMarathi ? (
-                        <motion.div
-                          key="english"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0, scale: 1.05, filter: "blur(5px)" }}
-                          transition={{ duration: 0.8 }}
-                          className="flex justify-center"
-                        >
-                          {"Vrundavan".split("").map((letter, i) => (
-                            <motion.span
-                              key={i}
-                              initial={{ scale: 0, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              transition={{ delay: 1.5 + (i * 0.08), type: "spring" }}
-                              style={{ color: "rgba(195, 2, 2, 0.92)" }}
-                              className="font-serif text-5xl font-bold sm:text-7xl lg:text-9xl drop-shadow-2xl"
-                            >
-                              {letter}
-                            </motion.span>
-                          ))}
-                        </motion.div>
-                      ) : (
-                        <motion.div
-                          key="marathi"
-                          initial={{ opacity: 0, filter: "blur(5px)" }}
-                          animate={{ opacity: 1, filter: "blur(0px)" }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.8 }}
+                       <motion.div
+                          initial="hidden"
+                          animate="visible"
                           className="flex justify-center"
                         >
                           {marathiChars.map((char, i) => (
                             <motion.span
                               key={i}
-                              initial={{ scale: 0, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              transition={{ delay: i * 0.1, type: "spring" }}
+                              variants={{
+                                hidden: {
+                                  scale: 0,
+                                  opacity: 0,
+                                },
+                                visible: {
+                                  scale: 1,
+                                  opacity: 1,
+                                },
+                              }}
+                              transition={{ delay: 1.5 + i * 0.1, type: "spring" }}
                               style={{ 
                                 color: "rgba(195, 2, 2, 0.92)",
                                 fontFamily: "var(--font-noto-devanagari), serif"
@@ -172,8 +143,6 @@ export function SplashScreen() {
                             </motion.span>
                           ))}
                         </motion.div>
-                      )}
-                    </AnimatePresence>
                   </div>
                 </div>
 
